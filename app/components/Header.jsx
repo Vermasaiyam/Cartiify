@@ -44,8 +44,8 @@ export default function Header() {
             </div>
             <div className="flex items-center gap-1">
                 {/* <AuthContextProvider>
-          <AdminButton />
-        </AuthContextProvider> */}
+                       <AdminButton />
+                    </AuthContextProvider> */}
                 <Link href={`/search`}>
                     <button
                         title="Search Products"
@@ -55,8 +55,8 @@ export default function Header() {
                     </button>
                 </Link>
                 {/* <AuthContextProvider>
-          <HeaderClientButtons />
-        </AuthContextProvider> */}
+                       <HeaderClientButtons />
+                    </AuthContextProvider> */}
                 <Link href={`/account`}>
                     <button
                         title="My Account"
@@ -66,8 +66,8 @@ export default function Header() {
                     </button>
                 </Link>
                 {/* <AuthContextProvider>
-          <LogoutButton />
-        </AuthContextProvider> */}
+                        <LogoutButton />
+                    </AuthContextProvider> */}
             </div>
         </nav>
     );
