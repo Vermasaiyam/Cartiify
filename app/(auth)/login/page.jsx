@@ -1,20 +1,49 @@
 "use client";
 
-// import { useAuth } from "@/contexts/AuthContext";
-// import { auth } from "@/lib/firebase";
+import { useAuth } from "@/contexts/AuthContext";
+import { auth } from "@/lib/firebase";
 // import { createUser } from "@/lib/firestore/user/write";
 import { Button } from "@nextui-org/react";
-// import {
-//     GoogleAuthProvider,
-//     signInWithEmailAndPassword,
-//     signInWithPopup,
-// } from "firebase/auth";
+import {
+    GoogleAuthProvider,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+} from "firebase/auth";
 import Link from "next/link";
-// import { useRouter } from "next/navigation";
-import { useState } from "react";
-// import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Page() {
+    const { user } = useAuth();
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [data, setData] = useState({});
+
+    const handleData = (key, value) => {
+        setData({
+            ...data,
+            [key]: value,
+        });
+    };
+
+    const handleLogin = async () => {
+        setIsLoading(true);
+        try {
+            await signInWithEmailAndPassword(auth, data?.email, data?.password);
+            toast.success("Logged In Successfully");
+        } catch (error) {
+            toast.error(error?.message);
+        }
+        setIsLoading(false);
+    };
+
+    useEffect(() => {
+        if (user) {
+            router.push("/");
+        }
+    }, [user]);
 
     return (
         <main className="w-full flex justify-center items-center bg-gray-300 md:p-24 p-12 min-h-screen">
@@ -30,7 +59,7 @@ export default function Page() {
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
-                            // handleLogin();
+                            handleLogin();
                         }}
                         className="flex flex-col gap-3"
                     >
@@ -39,10 +68,10 @@ export default function Page() {
                             type="email"
                             name="user-email"
                             id="user-email"
-                            // value={data?.email}
-                            // onChange={(e) => {
-                            //     handleData("email", e.target.value);
-                            // }}
+                            value={data?.email}
+                            onChange={(e) => {
+                                handleData("email", e.target.value);
+                            }}
                             className="px-3 py-2 rounded-xl border focus:outline-none w-full"
                         />
                         <input
@@ -50,10 +79,10 @@ export default function Page() {
                             type="password"
                             name="user-password"
                             id="user-password"
-                            // value={data?.password}
-                            // onChange={(e) => {
-                            //     handleData("password", e.target.value);
-                            // }}
+                            value={data?.password}
+                            onChange={(e) => {
+                                handleData("password", e.target.value);
+                            }}
                             className="px-3 py-2 rounded-xl border focus:outline-none w-full"
                         />
                         <div className="flex w-full justify-end">
@@ -64,8 +93,8 @@ export default function Page() {
                             </Link>
                         </div>
                         <Button
-                            // isLoading={isLoading}
-                            // isDisabled={isLoading}
+                            isLoading={isLoading}
+                            isDisabled={isLoading}
                             type="submit"
                             className="bg-red-500 hover:bg-red-700 text-white"
                         >
@@ -93,13 +122,14 @@ function SignInWithGoogleComponent() {
     const handleLogin = async () => {
         setIsLoading(true);
         try {
-            const credential = await signInWithPopup(auth, new GoogleAuthProvider());
-            const user = credential.user;
-            await createUser({
-                uid: user?.uid,
-                displayName: user?.displayName,
-                photoURL: user?.photoURL,
-            });
+            // const credential = await signInWithPopup(auth, new GoogleAuthProvider());
+            // const user = credential.user;
+            // await createUser({
+            //     uid: user?.uid,
+            //     displayName: user?.displayName,
+            //     photoURL: user?.photoURL,
+            // });
+            const user = await signInWithPopup(auth, new GoogleAuthProvider());
         } catch (error) {
             toast.error(error?.message);
         }
