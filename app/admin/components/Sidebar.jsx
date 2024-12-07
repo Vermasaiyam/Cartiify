@@ -80,7 +80,7 @@ export default function Sidebar() {
     }
 
     return (
-        <section className="sticky top-0 flex flex-col gap-8 bg-white border-r px-5 py-3 h-screen overflow-hidden w-[260px] z-50">
+        <section className="sticky top-0 flex flex-col gap-8 bg-white border-r px-5 py-3 h-screen overflow-hidden w-[260px] z-100">
             <div className="flex justify-center pt-4">
                 <Link href={"/"} className="flex flex-row items-center justify-center gap-4 text-red-600 font-bold">
                     <img className="h-10" src="/logo.png" alt="Cartify" />
