@@ -1,5 +1,5 @@
 export default function Page(){
     return (
-        <main>Admin Panel</main>
+        <main>Dashboard</main>
     )
 }
