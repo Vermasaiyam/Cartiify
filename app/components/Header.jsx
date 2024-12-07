@@ -22,14 +22,12 @@ export default function Header() {
     ];
     return (
         <nav className="sticky top-0 z-50 bg-white bg-opacity-65 backdrop-blur-2xl py-3 px-4 md:py-4 md:px-16 border-b flex items-center justify-between">
-            <div className="text-red-600 font-bold">
-                <Link href={"/"} className="flex flex-row items-center justify-center gap-2 lg:gap-4">
-                    <img className="h-6 md:h-8 lg:h-10" src="/logo.png" alt="Cartify" />
-                    <div className="hidden md:block md:text-xl lg:text-2xl">
-                        Cartify
-                    </div>
-                </Link>
-            </div>
+            <Link href={"/"} className="flex flex-row items-center justify-center gap-2 lg:gap-4 text-red-600 font-bold">
+                <img className="h-6 md:h-8 lg:h-10" src="/logo.png" alt="Cartify" />
+                <div className="hidden md:block md:text-xl lg:text-2xl">
+                    Cartify
+                </div>
+            </Link>
 
             <div className="hidden md:flex gap-2 items-center font-semibold">
                 {menuList?.map((item) => {
