@@ -103,6 +103,7 @@ export default function Sidebar() {
     );
 }
 
+// bg-[#879fff]
 function Tab({ item }) {
     const pathname = usePathname();
     const isSelected = pathname === item?.link;
@@ -110,7 +111,7 @@ function Tab({ item }) {
         <Link href={item?.link}>
             <li
                 className={`flex items-center gap-2 px-4 py-2 rounded-xl font-semibold ease-soft-spring transition-all duration-300
-        ${isSelected ? "bg-[#879fff] text-white" : "bg-white text-black"} 
+        ${isSelected ? "bg-red-300 text-white" : "bg-white text-black"} 
         `}
             >
                 {item?.icon} {item?.name}
