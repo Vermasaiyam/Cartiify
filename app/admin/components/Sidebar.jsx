@@ -66,6 +66,19 @@ export default function Sidebar() {
             icon: <ShieldCheck className="h-5 w-5" />,
         },
     ];
+
+    const logout = async () => {
+        try {
+            await toast.promise(signOut(auth), {
+                error: (e) => e?.message,
+                loading: "Loading...",
+                success: "Logged out successfully.",
+            });
+        } catch (error) {
+            toast.error(error?.message);
+        }
+    }
+
     return (
         <section className="sticky top-0 flex flex-col gap-8 bg-white border-r px-5 py-3 h-screen overflow-hidden w-[260px] z-50">
             <div className="flex justify-center pt-4">
@@ -83,17 +96,7 @@ export default function Sidebar() {
             </ul>
             <div className="flex justify-center">
                 <button
-                    onClick={async () => {
-                        try {
-                            await toast.promise(signOut(auth), {
-                                error: (e) => e?.message,
-                                loading: "Loading...",
-                                success: "Successfully Logged out",
-                            });
-                        } catch (error) {
-                            toast.error(error?.message);
-                        }
-                    }}
+                    onClick={logout}
                     className="flex gap-2 items-center px-3 py-2 hover:bg-indigo-100 rounded-xl w-full justify-center ease-soft-spring duration-400 transition-all"
                 >
                     <LogOut className="h-5 w-5" /> Logout
