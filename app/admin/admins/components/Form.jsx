@@ -97,37 +97,6 @@ export default function Form() {
                 className="flex flex-col gap-3"
             >
                 <div className="flex flex-col gap-1">
-                    <label htmlFor="brand-name" className="text-gray-500 text-sm">
-                        Image <span className="text-red-500">*</span>{" "}
-                    </label>
-                    {
-                        publicId && (
-                            <CldImage src={publicId} alt={publicId} width={"100"} height={"80"} />
-                        )
-                    }
-                    <CldUploadWidget
-                        uploadPreset="cartify"
-                        onSuccess={({ event, info }) => {
-                            if (event === "success") {
-                                setPublicId(info?.public_id);
-                            }
-                        }}
-                    >
-                        {({ open }) => {
-                            return (
-                                <div className="flex justify-start">
-                                    <button
-                                        className="bg-red-100 text-red-700 text-sm rounded-md border border-red-300 outline-none px-4 py-2 hover:bg-red-200 transition duration-200"
-                                        onClick={() => open()}
-                                    >
-                                        Choose File
-                                    </button>
-                                </div>
-                            );
-                        }}
-                    </CldUploadWidget>
-                </div>
-                <div className="flex flex-col gap-1">
                     <label htmlFor="admin-name" className="text-gray-500 text-sm">
                         Name <span className="text-red-500">*</span>{" "}
                     </label>
@@ -160,6 +129,37 @@ export default function Form() {
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
                         required
                     />
+                </div>
+                <div className="flex flex-col gap-1">
+                    <label htmlFor="brand-name" className="text-gray-500 text-sm">
+                        Image <span className="text-red-500">*</span>{" "}
+                    </label>
+                    {
+                        publicId && (
+                            <CldImage src={publicId} alt={publicId} width={"100"} height={"80"} />
+                        )
+                    }
+                    <CldUploadWidget
+                        uploadPreset="cartify"
+                        onSuccess={({ event, info }) => {
+                            if (event === "success") {
+                                setPublicId(info?.public_id);
+                            }
+                        }}
+                    >
+                        {({ open }) => {
+                            return (
+                                <div className="flex justify-start">
+                                    <button
+                                        className="bg-red-100 text-red-700 text-sm rounded-md border border-red-300 outline-none px-4 py-2 hover:bg-red-200 transition duration-200"
+                                        onClick={() => open()}
+                                    >
+                                        Choose File
+                                    </button>
+                                </div>
+                            );
+                        }}
+                    </CldUploadWidget>
                 </div>
                 <Button
                     isLoading={isLoading}
