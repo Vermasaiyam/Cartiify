@@ -1,4 +1,3 @@
-import uploadImageOnCloudinary from "@/lib/cloudinary/cloudinary";
 import { db, storage } from "@/lib/firebase";
 import {
     collection,
@@ -8,7 +7,6 @@ import {
     Timestamp,
     updateDoc,
 } from "firebase/firestore";
-// import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export const createNewCategory = async ({ data, url }) => {
     if (!url) {
@@ -21,9 +19,6 @@ export const createNewCategory = async ({ data, url }) => {
         throw new Error("Slug is required");
     }
     const newId = doc(collection(db, `ids`)).id;
-    // const imageRef = ref(storage, `categories/${newId}`);
-    // await uploadBytes(imageRef, image);
-    // const imageURL = await getDownloadURL(imageRef);
 
     await setDoc(doc(db, `categories/${newId}`), {
         ...data,
@@ -34,7 +29,7 @@ export const createNewCategory = async ({ data, url }) => {
 };
 
 
-export const updateCategory = async ({ data, image }) => {
+export const updateCategory = async ({ data, url }) => {
     if (!data?.name) {
         throw new Error("Name is required");
     }
@@ -46,12 +41,8 @@ export const updateCategory = async ({ data, image }) => {
     }
     const id = data?.id;
 
-    let imageURL = data?.imageURL;
-
-    if (image) {
-        const imageRef = ref(storage, `categories/${id}`);
-        await uploadBytes(imageRef, image);
-        imageURL = await getDownloadURL(imageRef);
+    if (url) {
+        imageURL = url;
     }
 
     await updateDoc(doc(db, `categories/${id}`), {

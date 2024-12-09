@@ -60,7 +60,7 @@ export default function Form() {
             await createNewCategory({ data: data, url: url });
             toast.success("Successfully Created");
             setData(null);
-            setImage(null);
+            setPublicId("");
         } catch (error) {
             toast.error(error?.message);
         }
@@ -70,10 +70,14 @@ export default function Form() {
     const handleUpdate = async () => {
         setIsLoading(true);
         try {
-            await updateCategory({ data: data, image: image });
+            const url = getCldImageUrl({
+                width: 960,
+                height: 600,
+                src: publicId,
+            });
+            await updateCategory({ data: data, url: url });
             toast.success("Successfully Updated");
             setData(null);
-            setImage(null);
             setPublicId("");
             router.push(`/admin/categories`);
         } catch (error) {
