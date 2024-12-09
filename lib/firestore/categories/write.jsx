@@ -41,17 +41,15 @@ export const updateCategory = async ({ data, url }) => {
 
     const id = data.id;
 
-    // Use the existing imageURL if no new URL is provided
     const imageURL = url || data?.imageURL;
 
-    // Update the category document
     await updateDoc(doc(db, `categories/${id}`), {
         ...data,
         imageURL: imageURL,
         timestampUpdate: Timestamp.now(),
     });
 
-    return { message: "Successfully Updated" }; // Return success response
+    return { message: "Successfully Updated" };
 };
 
 export const deleteCategory = async ({ id }) => {

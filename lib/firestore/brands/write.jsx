@@ -7,10 +7,9 @@ import {
     Timestamp,
     updateDoc,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-export const createNewBrand = async ({ data, image }) => {
-    if (!image) {
+export const createNewBrand = async ({ data, url }) => {
+    if (!url) {
         throw new Error("Image is Required");
     }
     if (!data?.name) {
@@ -18,19 +17,16 @@ export const createNewBrand = async ({ data, image }) => {
     }
 
     const newId = doc(collection(db, `ids`)).id;
-    const imageRef = ref(storage, `brands/${newId}`);
-    await uploadBytes(imageRef, image);
-    const imageURL = await getDownloadURL(imageRef);
 
     await setDoc(doc(db, `brands/${newId}`), {
         ...data,
         id: newId,
-        imageURL: imageURL,
+        imageURL: url,
         timestampCreate: Timestamp.now(),
     });
 };
 
-export const updateBrand = async ({ data, image }) => {
+export const updateBrand = async ({ data, url }) => {
     if (!data?.name) {
         throw new Error("Name is required");
     }
@@ -39,13 +35,7 @@ export const updateBrand = async ({ data, image }) => {
     }
     const id = data?.id;
 
-    let imageURL = data?.imageURL;
-
-    if (image) {
-        const imageRef = ref(storage, `brands/${id}`);
-        await uploadBytes(imageRef, image);
-        imageURL = await getDownloadURL(imageRef);
-    }
+    const imageURL = url || data?.imageURL;
 
     await updateDoc(doc(db, `brands/${id}`), {
         ...data,
