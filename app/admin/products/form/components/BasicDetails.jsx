@@ -167,7 +167,6 @@ export default function BasicDetails({ data, handleData }) {
                 </label>
                 <select
                     type="number"
-                    // placeholder="Enter Sale Price"
                     id="product-is-featured-product"
                     name="product-is-featured-product"
                     value={data?.isFeatured ? "yes" : "no"}
