@@ -1,16 +1,14 @@
-import { db, storage } from "@/lib/firebase";
+import { db } from "@/lib/firebase";
 import {
-  collection,
   deleteDoc,
   doc,
   setDoc,
   Timestamp,
   updateDoc,
 } from "firebase/firestore";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-export const createNewAdmin = async ({ data, image }) => {
-  if (!image) {
+export const createNewAdmin = async ({ data, url }) => {
+  if (!url) {
     throw new Error("Image is Required");
   }
   if (!data?.name) {
@@ -22,19 +20,15 @@ export const createNewAdmin = async ({ data, image }) => {
 
   const newId = data?.email;
 
-  const imageRef = ref(storage, `admins/${newId}`);
-  await uploadBytes(imageRef, image);
-  const imageURL = await getDownloadURL(imageRef);
-
   await setDoc(doc(db, `admins/${newId}`), {
     ...data,
     id: newId,
-    imageURL: imageURL,
+    imageURL: url,
     timestampCreate: Timestamp.now(),
   });
 };
 
-export const updateAdmin = async ({ data, image }) => {
+export const updateAdmin = async ({ data, url }) => {
   if (!data?.name) {
     throw new Error("Name is required");
   }
@@ -47,13 +41,7 @@ export const updateAdmin = async ({ data, image }) => {
 
   const id = data?.id;
 
-  let imageURL = data?.imageURL;
-
-  if (image) {
-    const imageRef = ref(storage, `admins/${id}`);
-    await uploadBytes(imageRef, image);
-    imageURL = await getDownloadURL(imageRef);
-  }
+  const imageURL = url || data?.imageURL;
 
   if (id === data?.email) {
     await updateDoc(doc(db, `admins/${id}`), {
