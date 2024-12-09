@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import BasicDetails from "./components/BasicDetails";
 import Images from "./components/Images";
-// import Description from "./components/Description";
+import Description from "./components/Description";
 import { Button } from "@nextui-org/react";
 import toast from "react-hot-toast";
 // import {
@@ -108,7 +108,7 @@ export default function Page() {
                 <h1 className="font-semibold">
                     {id ? "Update Product" : "Create New Product"}
                 </h1>
-                <Button isLoading={isLoading} isDisabled={isLoading} type="submit">
+                <Button isLoading={isLoading} isDisabled={isLoading} type="submit" className="bg-transparent text-xs text-red-600 border border-red-600 rounded-full">
                     {id ? "Update" : "Create"}
                 </Button>
             </div>
@@ -124,7 +124,7 @@ export default function Page() {
                         imageList={imageList}
                         setImageList={setImageList}
                     />
-                    {/* <Description data={data} handleData={handleData} /> */}
+                    <Description data={data} handleData={handleData} />
                 </div>
             </div>
         </form>
