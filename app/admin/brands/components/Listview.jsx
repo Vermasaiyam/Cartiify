@@ -28,7 +28,7 @@ export default function ListView() {
         <thead>
           <tr>
             <th className="font-semibold border-y bg-white px-3 py-2 border-l rounded-l-lg">
-              SN
+              S.No.
             </th>
             <th className="font-semibold border-y bg-white px-3 py-2">Image</th>
             <th className="font-semibold border-y bg-white px-3 py-2 text-left">
