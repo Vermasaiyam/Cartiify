@@ -40,9 +40,17 @@ export default function ListView() {
           </tr>
         </thead>
         <tbody>
-          {brands?.map((item, index) => {
-            return <Row index={index} item={item} key={item?.id} />;
-          })}
+          {Array.isArray(brands) && brands.length > 0 ? (
+            brands.map((item, index) => (
+              <Row index={index} item={item} key={item?.id} />
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4" className="text-center py-4 text-gray-500">
+                No Brands Available.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>

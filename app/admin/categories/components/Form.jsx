@@ -107,7 +107,7 @@ export default function Form() {
                         id="category-name"
                         name="category-name"
                         type="text"
-                        placeholder="Enter Name"
+                        placeholder="Enter Category Name"
                         value={data?.name ?? ""}
                         onChange={(e) => {
                             handleData("name", e.target.value);
@@ -127,7 +127,7 @@ export default function Form() {
                         onChange={(e) => {
                             handleData("slug", e.target.value);
                         }}
-                        placeholder="Enter Slug"
+                        placeholder="Enter Category Slug"
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
                     />
                 </div>

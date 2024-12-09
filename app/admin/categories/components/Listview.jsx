@@ -41,9 +41,17 @@ export default function ListView() {
                     </tr>
                 </thead>
                 <tbody>
-                    {categories?.map((item, index) => {
-                        return <Row index={index} item={item} key={item?.id || index} />;
-                    })}
+                    {Array.isArray(categories) && categories.length > 0 ? (
+                        categories.map((item, index) => (
+                            <Row index={index} item={item} key={item?.id} />
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="4" className="text-center py-4 text-gray-500">
+                                No Categories Available.
+                            </td>
+                        </tr>
+                    )}
                 </tbody>
             </table>
         </div>
