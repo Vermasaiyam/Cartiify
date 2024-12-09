@@ -39,17 +39,19 @@ export const updateCategory = async ({ data, url }) => {
     if (!data?.id) {
         throw new Error("ID is required");
     }
-    const id = data?.id;
+
+    const id = data.id;
+
+    const updateData = {
+        ...data,
+        timestampUpdate: Timestamp.now(),
+    };
 
     if (url) {
-        imageURL = url;
+        updateData.imageURL = url;
     }
 
-    await updateDoc(doc(db, `categories/${id}`), {
-        ...data,
-        imageURL: imageURL,
-        timestampUpdate: Timestamp.now(),
-    });
+    await updateDoc(doc(db, `categories/${id}`), updateData);
 };
 
 export const deleteCategory = async ({ id }) => {

@@ -1,6 +1,6 @@
 "use client";
 
-// import { getCategory } from "@/lib/firestore/categories/read_server";
+import { getCategory } from "@/lib/firestore/categories/read_server";
 import {
     createNewCategory,
     updateCategory,
@@ -21,24 +21,24 @@ export default function Form() {
     const searchParams = useSearchParams();
     const id = searchParams.get("id");
 
-    // const fetchData = async () => {
-    //     try {
-    //         const res = await getCategory({ id: id });
-    //         if (!res) {
-    //             toast.error("Category Not Found!");
-    //         } else {
-    //             setData(res);
-    //         }
-    //     } catch (error) {
-    //         toast.error(error?.message);
-    //     }
-    // };
+    const fetchData = async () => {
+        try {
+            const res = await getCategory({ id: id });
+            if (!res) {
+                toast.error("Category Not Found!");
+            } else {
+                setData(res);
+            }
+        } catch (error) {
+            toast.error(error?.message);
+        }
+    };
 
-    // useEffect(() => {
-    //     if (id) {
-    //         fetchData();
-    //     }
-    // }, [id]);
+    useEffect(() => {
+        if (id) {
+            fetchData();
+        }
+    }, [id]);
 
     const handleData = (key, value) => {
         setData((prevData) => {
@@ -70,12 +70,16 @@ export default function Form() {
     const handleUpdate = async () => {
         setIsLoading(true);
         try {
-            const url = getCldImageUrl({
-                width: 960,
-                height: 600,
-                src: publicId,
-            });
-            await updateCategory({ data: data, url: url });
+            if (publicId) {
+                const url = getCldImageUrl({
+                    width: 960,
+                    height: 600,
+                    src: publicId,
+                });
+                await updateCategory({ data: data, url: url });
+            } else {
+                await updateCategory({ data: data, url: "" });
+            }
             toast.success("Successfully Updated");
             setData(null);
             setPublicId("");
@@ -156,7 +160,7 @@ export default function Form() {
                                         className="bg-red-100 text-red-700 text-sm rounded-md border border-red-300 outline-none px-4 py-2 hover:bg-red-200 transition duration-200"
                                         onClick={() => open()}
                                     >
-                                        Upload an Image
+                                        Choose File
                                     </button>
                                 </div>
                             );
