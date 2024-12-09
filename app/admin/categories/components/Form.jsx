@@ -91,7 +91,7 @@ export default function Form() {
     };
 
     return (
-        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full md:w-[400px]">
+        <div className="flex flex-col gap-3 bg-white rounded-xl p-5 w-full lg:w-[400px]">
             <h1 className="font-semibold">{id ? "Update" : "Create"} Category</h1>
             <form
                 onSubmit={(e) => {
