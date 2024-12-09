@@ -34,11 +34,11 @@ export default function AdminLayout({ children }) {
 
     return (
         <main className="relative flex">
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
                 <Sidebar />
             </div>
             <div
-                className={`fixed md:hidden ease-in-out transition-all duration-400 ${
+                className={`fixed lg:hidden ease-in-out transition-all duration-400 ${
                     isOpen ? "translate-x-0" : "-translate-x-[260px]"
                 } z-50`}
                 ref={sidebarRef}
