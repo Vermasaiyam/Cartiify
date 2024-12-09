@@ -1,7 +1,7 @@
 "use client";
 
-// import { useCategories } from "@/lib/firestore/categories/read";
-// import { deleteCategory } from "@/lib/firestore/categories/write";
+import { useCategories } from "@/lib/firestore/categories/read";
+import { deleteCategory } from "@/lib/firestore/categories/write";
 import { Button, CircularProgress } from "@nextui-org/react";
 import { Edit2, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -9,33 +9,18 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function ListView() {
-    // const { data: categories, error, isLoading } = useCategories();
+    const { data: categories, error, isLoading } = useCategories();
 
-    // if (isLoading) {
-    //     return (
-    //         <div>
-    //             <CircularProgress />
-    //         </div>
-    //     );
-    // }
-    // if (error) {
-    //     return <div>{error}</div>;
-    // }
-
-    const categories = [
-        {
-            name: "Clothes",
-
-        },
-        {
-            name: "Clothes",
-
-        },
-        {
-            name: "Clothes",
-
-        },
-    ];
+    if (isLoading) {
+        return (
+            <div>
+                <CircularProgress />
+            </div>
+        );
+    }
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     return (
         <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl">
@@ -74,7 +59,7 @@ function Row({ item, index }) {
 
         setIsDeleting(true);
         try {
-            // await deleteCategory({ id: item?.id });
+            await deleteCategory({ id: item?.id });
             toast.success("Successfully Deleted");
         } catch (error) {
             toast.error(error?.message);
