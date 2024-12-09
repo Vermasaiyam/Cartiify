@@ -144,7 +144,19 @@ export default function Form() {
                         }}
                     </CldUploadWidget>
                 </div>
-                <Button isLoading={isLoading} isDisabled={isLoading} type="submit">
+                <Button
+                    isLoading={isLoading}
+                    isDisabled={isLoading}
+                    type="submit"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        if (id) {
+                            handleUpdate();
+                        } else {
+                            handleCreate();
+                        }
+                    }}
+                >
                     {id ? "Update" : "Create"}
                 </Button>
             </form>
