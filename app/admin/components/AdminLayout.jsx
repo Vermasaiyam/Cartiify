@@ -35,7 +35,7 @@ export default function AdminLayout({ children }) {
     return (
         <main className="relative flex">
             <div className="hidden lg:block">
-                <Sidebar />
+                <Sidebar toggleSidebar={toggleSidebar} />
             </div>
             <div
                 className={`fixed lg:hidden ease-in-out transition-all duration-400 ${
@@ -43,7 +43,7 @@ export default function AdminLayout({ children }) {
                 } z-50`}
                 ref={sidebarRef}
             >
-                <Sidebar />
+                <Sidebar toggleSidebar={toggleSidebar} />
             </div>
             <section className="flex-1 flex flex-col min-h-screen">
                 <Header toggleSidebar={toggleSidebar} className="relative z-40" />

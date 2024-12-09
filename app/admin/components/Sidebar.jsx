@@ -9,6 +9,7 @@ import {
     LibraryBig,
     LogOut,
     PackageOpen,
+    Plus,
     ShieldCheck,
     ShoppingCart,
     Star,
@@ -18,7 +19,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
 
-export default function Sidebar() {
+export default function Sidebar({ toggleSidebar }) {
     const menuList = [
         {
             name: "Dashboard",
@@ -81,19 +82,29 @@ export default function Sidebar() {
 
     return (
         <section className="sticky top-0 flex flex-col gap-8 bg-white border-r px-5 py-3 h-screen overflow-hidden w-[260px] z-100">
+            <button
+                onClick={toggleSidebar}
+                className="absolute top-3 left-3 transition-transform duration-300 ease-in-out rotate-45 lg:hidden"
+            >
+                <Plus className="h-6 w-6" />
+            </button>
+
             <div className="flex justify-center pt-4">
-                <Link href={"/"} className="flex flex-row items-center justify-center gap-4 text-red-600 font-bold">
+                <Link
+                    href={"/"}
+                    className="flex flex-row items-center justify-center gap-4 text-red-600 font-bold"
+                >
                     <img className="h-10" src="/logo.png" alt="Cartify" />
-                    <div className="text-2xl">
-                        Cartify
-                    </div>
+                    <div className="text-2xl">Cartify</div>
                 </Link>
             </div>
+
             <ul className="flex-1 h-full overflow-y-auto flex flex-col gap-4">
                 {menuList?.map((item, key) => {
                     return <Tab item={item} key={key} />;
                 })}
             </ul>
+
             <div className="flex justify-center">
                 <button
                     onClick={logout}
