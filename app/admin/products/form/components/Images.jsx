@@ -1,3 +1,5 @@
+import { CldImage, CldUploadWidget } from "next-cloudinary";
+
 export default function Images({
     data,
     setFeatureImage,
@@ -18,34 +20,42 @@ export default function Images({
                         />
                     </div>
                 )}
-                {featureImage && (
-                    <div className="flex justify-center">
-                        <img
-                            className="h-20 object-cover rounded-lg"
-                            src={URL.createObjectURL(featureImage)}
-                            alt=""
-                        />
-                    </div>
-                )}
+
+                {
+                    featureImage && (
+                        <CldImage src={featureImage} alt={featureImage} width={"100"} height={"80"} />
+                    )
+                }
                 <label
                     className="text-gray-500 text-xs"
                     htmlFor="product-feature-image"
                 >
                     Feature Image <span className="text-red-500">*</span>{" "}
                 </label>
-                <input
-                    type="file"
-                    id="product-feature-image"
-                    name="product-feature-image"
-                    onChange={(e) => {
-                        if (e.target.files.length > 0) {
-                            setFeatureImage(e.target.files[0]);
+
+                <CldUploadWidget
+                    uploadPreset="cartify"
+                    onSuccess={({ event, info }) => {
+                        if (event === "success") {
+                            setFeatureImage(info?.public_id);
                         }
                     }}
-                    className="border px-4 py-2 rounded-lg w-full outline-none"
-                />
+                >
+                    {({ open }) => {
+                        return (
+                            <div className="flex justify-start">
+                                <button
+                                    className="bg-red-100 text-red-700 text-sm rounded-md border border-red-300 outline-none px-4 py-2 hover:bg-red-200 transition duration-200"
+                                    onClick={() => open()}
+                                >
+                                    Choose File
+                                </button>
+                            </div>
+                        );
+                    }}
+                </CldUploadWidget>
             </div>
-            
+
             <div className="flex flex-col gap-1">
                 {imageList?.length === 0 && data?.imageList?.length != 0 && (
                     <div className="flex flex-wrap gap-3">
@@ -60,36 +70,49 @@ export default function Images({
                         })}
                     </div>
                 )}
-                {imageList?.length > 0 && (
-                    <div className="flex flex-wrap gap-3">
-                        {imageList?.map((item) => {
-                            return (
-                                <img
-                                    className="w-20 object-cover rounded-lg"
-                                    src={URL.createObjectURL(item)}
-                                    alt=""
-                                />
-                            );
-                        })}
-                    </div>
-                )}
+
+                <div className="flex flex-wrap gap-2 mb-4">
+                    {
+                        imageList.length > 0 && (imageList.map((image, index) => (
+                            <CldImage
+                                key={image.publicId}
+                                src={image.publicId}
+                                alt={`uploaded-image-${index}`}
+                                width={100}
+                                height={80}
+                                className="rounded border"
+                            />
+                        )))
+                    }
+                </div>
                 <label className="text-gray-500 text-xs" htmlFor="product-images">
                     Images <span className="text-red-500">*</span>{" "}
                 </label>
-                <input
-                    type="file"
-                    id="product-images"
-                    name="product-images"
-                    multiple
-                    onChange={(e) => {
-                        const newFiles = [];
-                        for (let i = 0; i < e.target.files.length; i++) {
-                            newFiles.push(e.target.files[i]);
+                <CldUploadWidget
+                    uploadPreset="cartify"
+                    options={{ multiple: true, maxFiles: 10 }}
+                    onSuccess={({ event, info }) => {
+                        if (event === "success") {
+                            setImageList((prevImages) => [
+                                ...prevImages,
+                                { publicId: info?.public_id, url: info?.secure_url }
+                            ]);
                         }
-                        setImageList(newFiles);
                     }}
-                    className="border px-4 py-2 rounded-lg w-full outline-none"
-                />
+                >
+                    {({ open }) => {
+                        return (
+                            <div className="flex justify-start">
+                                <button
+                                    className="bg-red-100 text-red-700 text-sm rounded-md border border-red-300 outline-none px-4 py-2 hover:bg-red-200 transition duration-200"
+                                    onClick={() => open()}
+                                >
+                                    Choose File
+                                </button>
+                            </div>
+                        );
+                    }}
+                </CldUploadWidget>
             </div>
         </section>
     );
