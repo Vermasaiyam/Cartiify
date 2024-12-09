@@ -90,7 +90,7 @@ export default function Images({
                 </label>
                 <CldUploadWidget
                     uploadPreset="cartify"
-                    options={{ multiple: true, maxFiles: 10 }}
+                    options={{ multiple: true, maxFiles: 6 }}
                     onSuccess={({ event, info }) => {
                         if (event === "success") {
                             setImageList((prevImages) => [
