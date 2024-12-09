@@ -28,7 +28,6 @@ export const createNewCategory = async ({ data, url }) => {
     });
 };
 
-
 export const updateCategory = async ({ data, url }) => {
     if (!data?.name) {
         throw new Error("Name is required");
@@ -42,16 +41,17 @@ export const updateCategory = async ({ data, url }) => {
 
     const id = data.id;
 
-    const updateData = {
+    // Use the existing imageURL if no new URL is provided
+    const imageURL = url || data?.imageURL;
+
+    // Update the category document
+    await updateDoc(doc(db, `categories/${id}`), {
         ...data,
+        imageURL: imageURL,
         timestampUpdate: Timestamp.now(),
-    };
+    });
 
-    if (url) {
-        updateData.imageURL = url;
-    }
-
-    await updateDoc(doc(db, `categories/${id}`), updateData);
+    return { message: "Successfully Updated" }; // Return success response
 };
 
 export const deleteCategory = async ({ id }) => {
