@@ -8,13 +8,14 @@ import {
 import { useProduct, useProducts } from "@/lib/firestore/products/read";
 import { Button } from "@nextui-org/react";
 import { X } from "lucide-react";
+import { CldImage, CldUploadWidget, getCldImageUrl } from "next-cloudinary";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export default function Form() {
     const [data, setData] = useState(null);
-    const [image, setImage] = useState(null);
+    const [publicId, setPublicId] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const { data: products } = useProducts({ pageLimit: 2000 });
 
@@ -54,10 +55,15 @@ export default function Form() {
     const handleCreate = async () => {
         setIsLoading(true);
         try {
-            await createNewCollection({ data: data, image: image });
+            const url = getCldImageUrl({
+                width: 960,
+                height: 600,
+                src: publicId,
+            });
+            await createNewCollection({ data: data, url: url });
             toast.success("Successfully Created");
             setData(null);
-            setImage(null);
+            setPublicId("");
         } catch (error) {
             toast.error(error?.message);
         }
@@ -67,10 +73,19 @@ export default function Form() {
     const handleUpdate = async () => {
         setIsLoading(true);
         try {
-            await updateCollection({ data: data, image: image });
+            if (publicId) {
+                const url = getCldImageUrl({
+                    width: 960,
+                    height: 600,
+                    src: publicId,
+                });
+                await updateCollection({ data: data, url: url });
+            } else {
+                await updateCollection({ data: data, url: "" });
+            }
             toast.success("Successfully Updated");
             setData(null);
-            setImage(null);
+            setPublicId("");
             router.push(`/admin/collections`);
         } catch (error) {
             toast.error(error?.message);
@@ -84,35 +99,9 @@ export default function Form() {
             <form
                 onSubmit={(e) => {
                     e.preventDefault();
-                    if (id) {
-                        handleUpdate();
-                    } else {
-                        handleCreate();
-                    }
                 }}
                 className="flex flex-col gap-3"
             >
-                <div className="flex flex-col gap-1">
-                    <label htmlFor="category-name" className="text-gray-500 text-sm">
-                        Image <span className="text-red-500">*</span>{" "}
-                    </label>
-                    {image && (
-                        <div className="flex justify-center items-center p-3">
-                            <img className="h-20" src={URL.createObjectURL(image)} alt="" />
-                        </div>
-                    )}
-                    <input
-                        onChange={(e) => {
-                            if (e.target.files.length > 0) {
-                                setImage(e.target.files[0]);
-                            }
-                        }}
-                        id="category-image"
-                        name="category-image"
-                        type="file"
-                        className="border px-4 py-2 rounded-lg w-full"
-                    />
-                </div>
                 <div className="flex flex-col gap-1">
                     <label htmlFor="collection-title" className="text-gray-500 text-sm">
                         Title <span className="text-red-500">*</span>{" "}
@@ -147,6 +136,37 @@ export default function Form() {
                         placeholder="Enter Sub Title"
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
                     />
+                </div>
+                <div className="flex flex-col gap-1">
+                    <label htmlFor="category-name" className="text-gray-500 text-sm">
+                        Image <span className="text-red-500">*</span>{" "}
+                    </label>
+                    {
+                        publicId && (
+                            <CldImage src={publicId} alt={publicId} width={"100"} height={"80"} />
+                        )
+                    }
+                    <CldUploadWidget
+                        uploadPreset="cartify"
+                        onSuccess={({ event, info }) => {
+                            if (event === "success") {
+                                setPublicId(info?.public_id);
+                            }
+                        }}
+                    >
+                        {({ open }) => {
+                            return (
+                                <div className="flex justify-start">
+                                    <button
+                                        className="bg-red-100 text-red-700 text-sm rounded-md border border-red-300 outline-none px-4 py-2 hover:bg-red-200 transition duration-200"
+                                        onClick={() => open()}
+                                    >
+                                        Choose File
+                                    </button>
+                                </div>
+                            );
+                        }}
+                    </CldUploadWidget>
                 </div>
                 <div className="flex flex-wrap gap-3">
                     {data?.products?.map((productId) => {
@@ -195,7 +215,19 @@ export default function Form() {
                         })}
                     </select>
                 </div>
-                <Button isLoading={isLoading} isDisabled={isLoading} type="submit">
+                <Button
+                    isLoading={isLoading}
+                    isDisabled={isLoading}
+                    type="submit"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        if (id) {
+                            handleUpdate();
+                        } else {
+                            handleCreate();
+                        }
+                    }}
+                >
                     {id ? "Update" : "Create"}
                 </Button>
             </form>
