@@ -118,7 +118,7 @@ export default function Page() {
             setData(null);
             setFeatureImage(null);
             setImageList([]);
-            toast.success("Product is successfully Updated!");
+            toast.success("Product is updated successfully!");
             router.push(`/admin/products`);
         } catch (error) {
             console.log(error?.message);
