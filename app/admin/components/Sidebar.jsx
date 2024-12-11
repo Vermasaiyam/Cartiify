@@ -42,14 +42,14 @@ export default function Sidebar({ toggleSidebar }) {
             icon: <Cat className="h-5 w-5" />,
         },
         {
+            name: "Collections",
+            link: "/admin/collections",
+            icon: <LibraryBig className="h-5 w-5" />,
+        },
+        {
             name: "Orders",
             link: "/admin/orders",
             icon: <ShoppingCart className="h-5 w-5" />,
-        },
-        {
-            name: "Customers",
-            link: "/admin/customers",
-            icon: <User className="h-5 w-5" />,
         },
         {
             name: "Reviews",
@@ -57,9 +57,9 @@ export default function Sidebar({ toggleSidebar }) {
             icon: <Star className="h-5 w-5" />,
         },
         {
-            name: "Collections",
-            link: "/admin/collections",
-            icon: <LibraryBig className="h-5 w-5" />,
+            name: "Customers",
+            link: "/admin/customers",
+            icon: <User className="h-5 w-5" />,
         },
         {
             name: "Admins",
