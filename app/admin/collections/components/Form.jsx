@@ -213,10 +213,11 @@ export default function Form() {
                         }}
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
                     >
-                        <option value="">Select Product</option>
+                        <option value="" hidden>Select Product</option>
                         {products?.map((item) => {
                             return (
                                 <option
+                                    key={item?.id}
                                     disabled={data?.products?.includes(item?.id)}
                                     value={item?.id}
                                 >
