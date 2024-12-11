@@ -257,7 +257,7 @@ function ProductCard({ productId, setData }) {
                     e.preventDefault();
                     setData((prevData) => {
                         let list = [...prevData?.products];
-                        list = list?.filter((item) => item != productId);
+                        list = list?.filter((item) => item !== productId);
                         return {
                             ...prevData,
                             products: list,
