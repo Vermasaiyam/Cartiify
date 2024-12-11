@@ -136,6 +136,17 @@ export default function Form() {
                         Image <span className="text-red-500">*</span>{" "}
                     </label>
                     {
+                        data?.imageURL && !publicId && (
+                            <div className="flex justify-center">
+                                <img
+                                    className="h-20 object-cover rounded-lg"
+                                    src={data?.imageURL}
+                                    alt={data?.name}
+                                />
+                            </div>
+                        )
+                    }
+                    {
                         publicId && (
                             <CldImage src={publicId} alt={publicId} width={"100"} height={"80"} />
                         )

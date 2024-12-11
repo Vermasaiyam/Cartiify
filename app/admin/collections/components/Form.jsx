@@ -141,15 +141,17 @@ export default function Form() {
                     <label htmlFor="category-name" className="text-gray-500 text-sm">
                         Image <span className="text-red-500">*</span>{" "}
                     </label>
-                    {data?.imageURL && !publicId && (
-                        <div className="flex justify-center">
-                            <img
-                                className="h-20 object-cover rounded-lg"
-                                src={data?.imageURL}
-                                alt=""
-                            />
-                        </div>
-                    )}
+                    {
+                        data?.imageURL && !publicId && (
+                            <div className="flex justify-center">
+                                <img
+                                    className="h-20 object-cover rounded-lg"
+                                    src={data?.imageURL}
+                                    alt={data?.name}
+                                />
+                            </div>
+                        )
+                    }
                     {
                         publicId && (
                             <CldImage src={publicId} alt={publicId} width={"100"} height={"80"} />
