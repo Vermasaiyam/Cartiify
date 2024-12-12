@@ -46,7 +46,7 @@ export default function Categories({ categories }) {
     return (
         <div className="flex flex-col gap-8 justify-center overflow-hidden md:p-10 p-5">
             <div className="flex justify-center w-full">
-                <h1 className="text-lg font-semibold">Shop By Category</h1>
+                <h1 className="text-lg font-semibold">Discover by Category</h1>
             </div>
             <Slider {...settings}>
                 {(categories?.length <= 2
