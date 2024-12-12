@@ -46,9 +46,9 @@ export default function FeaturedProductSlider({ featuredProducts }) {
     return (
         <div className="relative w-full">
             <Slider {...settings}>
-                {featuredProducts?.map((product, index) => {
+                {featuredProducts?.map((product) => {
                     return (
-                        <div key={index}>
+                        <div key={product?.id}>
                             <div className="flex flex-col-reverse md:flex-row gap-4 bg-[#f8f8f8] p-5 md:px-24 md:py-20 w-full h-full">
                                 <div className="flex-1 flex flex-col justify-center gap-6">
                                     <h2 className="text-gray-500 text-xs md:text-base">

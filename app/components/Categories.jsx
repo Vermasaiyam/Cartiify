@@ -52,9 +52,9 @@ export default function Categories({ categories }) {
                 {(categories?.length <= 2
                     ? [...categories, ...categories, ...categories]
                     : categories
-                )?.map((category, index) => {
+                )?.map((category) => {
                     return (
-                        <Link key={index} href={`/categories/${category?.id}`}>
+                        <Link key={category?.id} href={`/categories/${category?.id}`}>
                             <div className="px-2">
                                 <div className="flex flex-col gap-2 items-center justify-center">
                                     <div className="md:h-32 md:w-32 h-24 w-24 rounded-full md:p-5 p-2 border overflow-hidden">
