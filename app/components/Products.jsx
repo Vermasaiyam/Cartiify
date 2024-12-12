@@ -11,7 +11,7 @@ import { Heart } from "lucide-react";
 export default function ProductsGridView({ products }) {
     return (
         <section className="w-full flex justify-center">
-            <div className="flex flex-col gap-5 md:w-[80%] w-[95%] p-5">
+            <div className="flex flex-col gap-5 lg:w-[80%] md:w-[90%] w-[95%] p-5">
                 <h1 className="text-center font-semibold text-lg">Products</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full">
                     {products?.map((item) => {

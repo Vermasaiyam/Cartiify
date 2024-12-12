@@ -29,11 +29,11 @@ export default function CustomerReviews() {
     ];
     return (
         <section className="flex justify-center">
-            <div className="w-full p-5 md:max-w-[80%] flex flex-col gap-3">
+            <div className="w-full p-5 lg:max-w-[80%] md:max-w-[85%] flex flex-col gap-3">
                 <h1 className="text-center font-semibold text-xl">
                     Our customers love
                 </h1>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-6 gap-4">
                     {list?.map((item) => {
                         return (
                             <div className="flex flex-col gap-2 p-4 rounded-lg justify-center items-center border hover:bg-gray-50 transition-all duration-100">
