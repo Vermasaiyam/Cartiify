@@ -82,10 +82,10 @@ export default function FeaturedProductSlider({ featuredProducts }) {
                                         </div>
                                     </AuthContextProvider>
                                 </div>
-                                <div className="flex justify-center items-center">
+                                <div className="flex justify-center items-center bg-blend-multiply">
                                     <Link href={`/products/${product?.id}`}>
                                         <img
-                                            className="h-[14rem] md:h-[23rem] object-cover bg-blend-multiply"
+                                            className="h-[14rem] md:h-[23rem] object-cover"
                                             src={product?.featureImageURL}
                                             alt={product?.title}
                                         />
