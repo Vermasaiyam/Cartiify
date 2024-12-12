@@ -50,13 +50,13 @@ export default function Brands({ brands }) {
                     : brands
                 )?.map((brand) => {
                     return (
-                        <div key={brand?.id } className="px-2">
+                        <div key={brand?.id} className="px-2" title={brand?.name}>
                             <div className="flex flex-col gap-2 items-center justify-center">
                                 <div className="h-20 rounded-lg md:p-5 p-2 border overflow-hidden">
                                     <img
                                         className="h-full w-full object-cover"
                                         src={brand?.imageURL}
-                                        alt=""
+                                        alt={brand?.name}
                                     />
                                 </div>
                             </div>
