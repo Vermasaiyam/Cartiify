@@ -16,14 +16,13 @@ export const createNewProduct = async ({ data, featureImage, imageList }) => {
     }
 
     const featureImageURL = featureImage;
+    const imageURLList = imageList || [];
 
-    let imageURLList = imageList;
-
-    const newId = doc(collection(db, `ids`)).id;
+    const newId = doc(collection(db, `products`)).id;
 
     await setDoc(doc(db, `products/${newId}`), {
         ...data,
-        featureImageURL: featureImageURL,
+        featureImageURL,
         imageList: imageURLList,
         id: newId,
         timestampCreate: Timestamp.now(),
@@ -44,11 +43,11 @@ export const updateProduct = async ({ data, featureImage, imageList }) => {
         featureImageURL = featureImage;
     }
 
-    let imageURLList = imageList?.length === 0 ? data?.imageList : imageList;
+    const imageURLList = imageList?.length ? imageList : data?.imageList;
 
     await setDoc(doc(db, `products/${data?.id}`), {
         ...data,
-        featureImageURL: featureImageURL,
+        featureImageURL,
         imageList: imageURLList,
         timestampUpdate: Timestamp.now(),
     });

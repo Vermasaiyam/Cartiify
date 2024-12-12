@@ -131,6 +131,7 @@ export default function BasicDetails({ data, handleData }) {
                     placeholder="Enter Product Price"
                     id="product-price"
                     name="product-price"
+                    min={0}
                     value={data?.price ?? ""}
                     onChange={(e) => {
                         handleData("price", e.target.valueAsNumber);
@@ -149,6 +150,7 @@ export default function BasicDetails({ data, handleData }) {
                     placeholder="Enter Product Sale Price"
                     id="product-sale-price"
                     name="product-sale-price"
+                    min={0}
                     value={data?.salePrice ?? ""}
                     onChange={(e) => {
                         handleData("salePrice", e.target.valueAsNumber);

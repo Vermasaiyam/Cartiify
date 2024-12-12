@@ -16,9 +16,9 @@ export default async function Home() {
     ]);
 
   return (
-    <div className="w-screen h-screen overflow-x-hidden overflow-y-auto">
+    <main className="w-screen h-screen overflow-x-hidden overflow-y-auto">
       <Header />
       <FeaturedProductSlider featuredProducts={featuredProducts} />
-    </div>
+    </main>
   );
 }
