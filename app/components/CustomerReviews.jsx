@@ -31,7 +31,7 @@ export default function CustomerReviews() {
         <section className="flex justify-center">
             <div className="w-full p-5 lg:max-w-[80%] md:max-w-[85%] flex flex-col gap-3">
                 <h1 className="text-center font-semibold text-xl">
-                    Our customers love
+                    Why Customers Choose Us
                 </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-6 gap-4">
                     {list?.map((item) => {
