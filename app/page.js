@@ -4,6 +4,7 @@ import FeaturedProductSlider from "./components/Sliders";
 import { getCollections } from "@/lib/firestore/collections/read_server";
 import { getCategories } from "@/lib/firestore/categories/read_server";
 import { getBrands } from "@/lib/firestore/brands/read_server";
+import Collections from "./components/Collections";
 
 export default async function Home() {
   const [featuredProducts, collections, categories, products, brands] =
@@ -19,6 +20,7 @@ export default async function Home() {
     <main className="w-screen h-screen overflow-x-hidden overflow-y-auto">
       <Header />
       <FeaturedProductSlider featuredProducts={featuredProducts} />
+      <Collections collections={collections} />
     </main>
   );
 }
