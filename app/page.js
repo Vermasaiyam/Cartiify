@@ -9,6 +9,7 @@ import Categories from "./components/Categories";
 import ProductsGridView from "./components/Products";
 import CustomerReviews from "./components/CustomerReviews";
 import Brands from "./components/Brands";
+import Footer from "./components/Footer";
 
 export default async function Home() {
   const [featuredProducts, collections, categories, products, brands] =
@@ -29,6 +30,7 @@ export default async function Home() {
       <ProductsGridView products={products} />
       <CustomerReviews />
       <Brands brands={brands} />
+      <Footer />
     </main>
   );
 }
