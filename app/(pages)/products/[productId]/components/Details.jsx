@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export default function Details({ product }) {
     return (
-        <div className="w-full flex flex-col gap-3">
+        <div className="w-full flex flex-col gap-3 z-0">
             <div className="flex gap-3">
                 <Category categoryId={product?.categoryId} />
                 <Brand brandId={product?.brandId} />

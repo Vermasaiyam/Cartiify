@@ -47,7 +47,7 @@ export default function AddToCartButton({ productId, type }) {
                 isDisabled={isLoading}
                 onClick={handlClick}
                 variant="bordered"
-                className="border-2 border-red-600 text-red-500"
+                className="border-2 border-red-600 text-red-500 z-0"
             >
                 {/* {!isAdded && "Add To Cart"}
                 {isAdded && "Click To Remove"} */}
@@ -63,7 +63,7 @@ export default function AddToCartButton({ productId, type }) {
                 isDisabled={isLoading}
                 onClick={handlClick}
                 variant="bordered"
-                className="border-2 border-red-600 text-red-500"
+                className="border-2 border-red-600 text-red-500 z-0"
                 color="primary"
                 size="sm"
             >
@@ -85,7 +85,7 @@ export default function AddToCartButton({ productId, type }) {
             variant="flat"
             isIconOnly
             size="sm"
-            className="border-2 border-red-600 text-red-500 px-1"
+            className="border-2 border-red-600 text-red-500 px-1 z-0"
         >
             {/* {!isAdded && <ShoppingCart className="text-xs" />}
             {isAdded && <ShoppingCartIcon className="text-xs" />} */}
