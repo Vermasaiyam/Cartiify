@@ -57,7 +57,7 @@ export default function Header() {
     }
 
     return (
-        <nav className="sticky top-0 z-50 bg-white bg-opacity-65 backdrop-blur-2xl py-2 px-4 md:py-3 md:px-16 border-b flex items-center justify-between">
+        <nav className="sticky top-0 z-50 bg-white bg-opacity-65 backdrop-blur-2xl py-2 px-4 md:py-3 md:px-6 lg:px-16 border-b flex items-center justify-between">
             <Link
                 href={"/"}
                 className="flex flex-row items-center justify-center gap-2 lg:gap-4 text-red-600 font-bold"
