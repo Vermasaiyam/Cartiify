@@ -19,7 +19,7 @@ export default function Page() {
 
     return (
         <main className="flex flex-col gap-3 justify-center items-center p-5">
-            <h1 className="text-2xl font-semibold">Favorites</h1>
+            <h1 className="text-2xl font-semibold">Your Favorites</h1>
             {(!data?.favorites || data?.favorites?.length === 0) && (
                 <div className="flex flex-col gap-5 justify-center items-center h-full w-full py-20">
                     <div className="flex justify-center">
@@ -30,7 +30,7 @@ export default function Page() {
                     </h1>
                 </div>
             )}
-            <div className="p-5 w-full md:max-w-[900px] gap-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
+            <div className="p-5 lg:w-[80%] md:w-[90%] w-[95%] gap-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 {data?.favorites?.map((productId) => {
                     return <ProductItem productId={productId} key={productId} />;
                 })}

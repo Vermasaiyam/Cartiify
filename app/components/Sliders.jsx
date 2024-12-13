@@ -3,9 +3,11 @@
 import Link from "next/link";
 import Slider from "react-slick";
 import AuthContextProvider from "@/contexts/AuthContext";
-import { ChevronLeft, ChevronRight, Heart } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import AddToCartButton from "./AddToCartButton";
+import FavoriteButton from "./FavoriteButton";
 
 const PrevArrow = (props) => {
     const { className, onClick } = props;
@@ -73,12 +75,8 @@ export default function FeaturedProductSlider({ featuredProducts }) {
                                                     BUY NOW
                                                 </button>
                                             </Link>
-                                            <button className="border-2 border-red-600 text-red-600 text-xs md:text-sm px-4 py-1.5 rounded-lg">
-                                                ADD TO CART
-                                            </button>
-                                            <button className="text-pink-600 text-xs md:text-sm px-4 py-1.5 rounded-lg">
-                                                <Heart />
-                                            </button>
+                                            <AddToCartButton productId={product?.id} type={"large"} />
+                                            <FavoriteButton productId={product?.id} />
                                         </div>
                                     </AuthContextProvider>
                                 </div>
