@@ -1,18 +1,13 @@
 "use client";
 
-// import { useAuth } from "@/contexts/AuthContext";
-// import { useAdmin } from "@/lib/firestore/admins/read";
+import { useAuth } from "@/contexts/AuthContext";
+import { useAdmin } from "@/lib/firestore/admins/read";
 import { Avatar } from "@nextui-org/react";
 import { Menu } from "lucide-react";
 
 export default function Header({ toggleSidebar }) {
-    // const { user } = useAuth();
-    // const { data: admin } = useAdmin({ email: user?.email });
-
-    const admin = {
-        name: "Saiyam Verma",
-        email: "vermasaiyam9@gmail.com",
-    }
+    const { user } = useAuth();
+    const { data: admin } = useAdmin({ email: user?.email });
     
     return (
         <section className="fixed w-full top-0 flex items-center gap-3 bg-white border-b px-4 py-3 z-40">
