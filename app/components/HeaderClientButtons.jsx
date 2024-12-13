@@ -11,7 +11,7 @@ export default function HeaderClientButtons() {
     const { data } = useUser({ uid: user?.uid });
     return (
         <div className="flex items-center gap-1">
-            <Link href={`/favorites`}>
+            <Link href={`/favourites`}>
                 {(data?.favorites?.length ?? 0) != 0 && (
                     <Badge
                         variant="solid"
