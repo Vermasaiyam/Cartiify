@@ -68,7 +68,7 @@ export function ProductCard({ product }) {
             <div className="flex items-center gap-4 w-full">
                 <div className="w-full">
                     <Link href={`/checkout?type=buynow&productId=${product?.id}`}>
-                        <button className="flex-1 bg-red-500 text-white px-4 py-2 rounded-lg text-xs w-full">
+                        <button className="flex-1 bg-red-500 hover:bg-red-700 transition-all duration-200 text-white px-4 py-2 rounded-lg text-xs w-full">
                             Buy Now
                         </button>
                     </Link>

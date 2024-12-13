@@ -69,7 +69,7 @@ export default function FeaturedProductSlider({ featuredProducts }) {
                                             <Link
                                                 href={`/checkout?type=buynow&productId=${product?.id}`}
                                             >
-                                                <button className="bg-red-600 text-white text-xs md:text-sm px-4 py-1.5 rounded-lg">
+                                                <button className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white text-xs md:text-sm px-4 py-1.5 rounded-lg">
                                                     BUY NOW
                                                 </button>
                                             </Link>

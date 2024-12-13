@@ -96,7 +96,7 @@ export default function Page() {
                             isLoading={isLoading}
                             isDisabled={isLoading}
                             type="submit"
-                            className="bg-red-500 hover:bg-red-700 text-white"
+                            className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white"
                         >
                             Login
                         </Button>

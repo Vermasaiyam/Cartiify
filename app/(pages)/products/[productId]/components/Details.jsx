@@ -30,7 +30,7 @@ export default function Details({ product }) {
             </h3>
             <div className="flex flex-wrap items-center gap-4">
                 <Link href={`/checkout?type=buynow&productId=${product?.id}`}>
-                    <button className="bg-red-500 text-white rounded-lg px-4 py-1.5">
+                    <button className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white rounded-lg px-4 py-1.5">
                         Buy Now
                     </button>
                 </Link>
