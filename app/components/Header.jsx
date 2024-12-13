@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import LogoutButton from "./LogoutButton";
 import { useAuth } from "@/contexts/AuthContext";
 import AdminButton from "./AdminButton";
+import HeaderClientButtons from "./HeaderClientButtons";
 
 export default function Header() {
     const menuList = [
@@ -40,6 +41,7 @@ export default function Header() {
         }
         return (
             <>
+                <HeaderClientButtons />
                 <Link href={`/account`}>
                     <button
                         title="My Account"
