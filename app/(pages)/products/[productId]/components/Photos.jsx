@@ -12,7 +12,7 @@ export default function Photos({ imageList }) {
         <div className="flex flex-col gap-3 w-full">
             <div className="flex justify-center w-full">
                 <img
-                    className="object-cover h-[350px] md:h-[430px]"
+                    className="object-contain h-[350px] md:h-[430px]"
                     src={selectedImage}
                 />
             </div>
@@ -24,7 +24,7 @@ export default function Photos({ imageList }) {
                             onClick={() => {
                                 setSelectedImage(item);
                             }}
-                            className="w-[80px] border rounded p-2"
+                            className="md:w-[80px] w-[70px] border rounded p-2"
                         >
                             <img className="object-cover" src={item} alt="" />
                         </div>
