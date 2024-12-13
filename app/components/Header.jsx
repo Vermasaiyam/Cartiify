@@ -47,7 +47,8 @@ export default function Header() {
                         title="My Account"
                         className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600"
                     >
-                        <UserCircle2 size={20} />
+                        <UserCircle2 size={16} className="block sm:hidden text-gray-700 hover:text-red-600" />
+                        <UserCircle2 size={20} className="hidden sm:block text-gray-700 hover:text-red-600" />
                     </button>
                 </Link>
                 <LogoutButton />
@@ -86,7 +87,8 @@ export default function Header() {
                         title="Search Products"
                         className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600"
                     >
-                        <Search size={20} />
+                        <Search size={16} className="block sm:hidden text-gray-700 hover:text-red-600" />
+                        <Search size={20} className="hidden sm:block text-gray-700 hover:text-red-600" />
                     </button>
                 </Link>
                 <UserChecking />
