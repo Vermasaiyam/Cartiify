@@ -6,8 +6,7 @@ import { useUser } from "@/lib/firestore/user/read";
 import { updateCarts } from "@/lib/firestore/user/write";
 import { MdDelete } from "react-icons/md";
 import { Button, CircularProgress } from "@nextui-org/react";
-import { Minus, Plus, X } from "lucide-react";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Minus, Plus } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
