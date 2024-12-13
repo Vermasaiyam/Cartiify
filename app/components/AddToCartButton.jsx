@@ -6,9 +6,9 @@ import { updateCarts } from "@/lib/firestore/user/write";
 import { Button } from "@nextui-org/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useRouter } from "next/navigation";
-import { ShoppingCart, ShoppingCartIcon } from "lucide-react";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { ShoppingCart } from "lucide-react";
 
 export default function AddToCartButton({ productId, type }) {
     const { user } = useAuth();
@@ -66,7 +66,7 @@ export default function AddToCartButton({ productId, type }) {
                 color="primary"
                 size="sm"
             >
-                {!isAdded && <AddShoppingCartIcon className="text-xs" />}
+                {!isAdded && <ShoppingCart className="text-xs" />}
                 {isAdded && <ShoppingCartIcon className="text-xs" />}
                 {!isAdded && "Add To Cart"}
                 {isAdded && "Click To Remove"}
