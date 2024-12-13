@@ -1,12 +1,11 @@
 "use client";
 
-import { Heart, Search, ShoppingCart, UserCircle2 } from "lucide-react";
+import { Search, UserCircle2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoutButton from "./LogoutButton";
 import AuthContextProvider from "@/contexts/AuthContext";
-// import HeaderClientButtons from "./HeaderClientButtons";
-// import AdminButton from "./AdminButton";
+import AdminButton from "./AdminButton";
 
 export default function Header() {
     const menuList = [
@@ -40,7 +39,7 @@ export default function Header() {
                 {menuList?.map((item, index) => {
                     return (
                         <Link key={index} href={item?.link}>
-                            <button className={`text-base px-4 py-2 rounded-lg hover:text-red-600 hover:bg-gray-50 ${isActive(item?.link)}`}>
+                            <button className={`text-base px-4 py-2 rounded-lg hover:text-red-600 hover:bg-gray-100 ${isActive(item?.link)}`}>
                                 {item?.name}
                             </button>
                         </Link>
@@ -48,13 +47,13 @@ export default function Header() {
                 })}
             </div>
             <div className="flex items-center gap-1">
-                {/* <AuthContextProvider>
-                       <AdminButton />
-                    </AuthContextProvider> */}
+                <AuthContextProvider>
+                    <AdminButton />
+                </AuthContextProvider>
                 <Link href={`/search`}>
                     <button
                         title="Search Products"
-                        className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50 hover:text-red-600"
+                        className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600"
                     >
                         <Search size={20} />
                     </button>
@@ -65,7 +64,7 @@ export default function Header() {
                 <Link href={`/account`}>
                     <button
                         title="My Account"
-                        className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50 hover:text-red-600"
+                        className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600"
                     >
                         <UserCircle2 size={20} />
                     </button>

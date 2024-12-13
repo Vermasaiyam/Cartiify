@@ -27,7 +27,7 @@ export default function LogoutButton() {
             }}
             className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50"
         >
-            <LogOut size={14} />
+            <LogOut size={20} />
         </button>
     );
 }
