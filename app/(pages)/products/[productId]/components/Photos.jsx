@@ -68,10 +68,10 @@ export default function Photos({ imageList }) {
                     <div
                         key={item}
                         onMouseEnter={() => handleMouseEnterProduct(item)}
-                        className="cursor-pointer md:w-[80px] w-[70px] border rounded p-2"
+                        className="cursor-pointer lg:w-24 lg:h-24 md:h-20 md:w-20 h-16 w-16 border rounded p-2"
                     >
                         <img
-                            className="object-cover w-full h-full"
+                            className="object-contain h-full w-full"
                             src={item}
                             alt="Thumbnail"
                         />

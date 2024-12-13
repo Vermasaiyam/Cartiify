@@ -24,7 +24,7 @@ export default async function Page({ params }) {
     const product = await getProduct({ id: productId });
     return (
         <main className="p-5 md:p-10">
-            <section className="flex flex-col-reverse md:flex-row gap-3">
+            <section className="flex flex-col md:flex-row gap-3">
                 <Photos
                     imageList={[product?.featureImageURL, ...(product?.imageList ?? [])]}
                 />
