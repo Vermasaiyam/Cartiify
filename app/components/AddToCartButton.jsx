@@ -27,12 +27,12 @@ export default function AddToCartButton({ productId, type }) {
             }
             if (isAdded) {
                 const newList = data?.carts?.filter((item) => item?.id != productId);
-        await updateCarts({ list: newList, uid: user?.uid });
-        } else {
-        await updateCarts({
-            list: [...(data?.carts ?? []), { id: productId, quantity: 1 }],
-            uid: user?.uid,
-        });
+                await updateCarts({ list: newList, uid: user?.uid });
+            } else {
+                await updateCarts({
+                    list: [...(data?.carts ?? []), { id: productId, quantity: 1 }],
+                    uid: user?.uid,
+                });
             }
         } catch (error) {
             toast.error(error?.message);
