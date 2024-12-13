@@ -15,7 +15,7 @@ export default function Header({ toggleSidebar }) {
     }
     
     return (
-        <section className="fixed w-full top-0 flex items-center gap-3 bg-white border-b px-4 py-3">
+        <section className="fixed w-full top-0 flex items-center gap-3 bg-white border-b px-4 py-3 z-40">
             <div className="flex justify-center items-center lg:hidden">
                 <button onClick={toggleSidebar}>
                     <Menu />

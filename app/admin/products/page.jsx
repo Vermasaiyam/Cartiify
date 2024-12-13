@@ -3,7 +3,7 @@ import ListView from "./components/ListView";
 
 export default function Page() {
     return (
-        <main className="flex flex-col gap-4 p-5">
+        <main className="flex flex-col gap-4 p-5 z-0">
             <div className="flex justify-between items-center">
                 <h1 className="text-xl">Products</h1>
                 <Link href={`/admin/products/form`}>
