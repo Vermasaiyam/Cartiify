@@ -1,12 +1,12 @@
 import AddToCartButton from "@/app/components/AddToCartButton";
 import FavoriteButton from "@/app/components/FavoriteButton";
-import MyRating from "@/app/components/MyRating";
+// import MyRating from "@/app/components/MyRating";
 import AuthContextProvider from "@/contexts/AuthContext";
 import { getBrand } from "@/lib/firestore/brands/read_server";
 import { getCategory } from "@/lib/firestore/categories/read_server";
-import { getProductReviewCounts } from "@/lib/firestore/products/count/read";
+// import { getProductReviewCounts } from "@/lib/firestore/products/count/read";
 import Link from "next/link";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 
 export default function Details({ product }) {
     return (
@@ -16,9 +16,9 @@ export default function Details({ product }) {
                 <Brand brandId={product?.brandId} />
             </div>
             <h1 className="font-semibold text-xl md:text-4xl">{product?.title}</h1>
-            <Suspense fallback="Failed To Load">
+            {/* <Suspense fallback="Failed To Load">
                 <RatingReview product={product} />
-            </Suspense>
+            </Suspense> */}
             <h2 className="text-gray-600 text-sm line-clamp-3 md:line-clamp-4">
                 {product?.shortDescription}
             </h2>
@@ -30,7 +30,7 @@ export default function Details({ product }) {
             </h3>
             <div className="flex flex-wrap items-center gap-4">
                 <Link href={`/checkout?type=buynow&productId=${product?.id}`}>
-                    <button className="bg-black text-white rounded-lg px-4 py-1.5">
+                    <button className="bg-red-500 text-white rounded-lg px-4 py-1.5">
                         Buy Now
                     </button>
                 </Link>
@@ -80,15 +80,15 @@ async function Brand({ brandId }) {
     );
 }
 
-async function RatingReview({ product }) {
-    const counts = await getProductReviewCounts({ productId: product?.id });
-    return (
-        <div className="flex gap-3 items-center">
-            <MyRating value={counts?.averageRating ?? 0} />
-            <h1 className="text-sm text-gray-400">
-                <span>{counts?.averageRating?.toFixed(1)}</span> ({counts?.totalReviews}
-                )
-            </h1>
-        </div>
-    );
-}
+// async function RatingReview({ product }) {
+//     const counts = await getProductReviewCounts({ productId: product?.id });
+//     return (
+//         <div className="flex gap-3 items-center">
+//             {/* <MyRating value={counts?.averageRating ?? 0} /> */}
+//             <h1 className="text-sm text-gray-400">
+//                 <span>{counts?.averageRating?.toFixed(1)}</span> ({counts?.totalReviews}
+//                 )
+//             </h1>
+//         </div>
+//     );
+// }

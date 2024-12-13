@@ -59,11 +59,10 @@ export const getProductsByCategory = async ({ categoryId }) => {
     const list = await getDocs(
         query(
             collection(db, "products"),
-            orderBy("timestampCreate", "desc"),
             where("categoryId", "==", categoryId)
         )
     );
-    return list.docs.map((snap) => {
+    const products = list.docs.map((snap) => {
         const product = snap.data();
         return {
             ...product,
@@ -71,4 +70,5 @@ export const getProductsByCategory = async ({ categoryId }) => {
             timestampUpdate: convertTimestamp(product.timestampUpdate),
         };
     });
+    return products.sort((a, b) => new Date(b.timestampCreate) - new Date(a.timestampCreate));
 };

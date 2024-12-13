@@ -1,8 +1,8 @@
 
 import Link from "next/link";
-// import FavoriteButton from "./FavoriteButton";
+import FavoriteButton from "./FavoriteButton";
 import AuthContextProvider from "@/contexts/AuthContext";
-// import AddToCartButton from "./AddToCartButton";
+import AddToCartButton from "./AddToCartButton";
 // import { getProductReviewCounts } from "@/lib/firestore/products/count/read";
 // import { Suspense } from "react";
 // import MyRating from "./MyRating";
@@ -36,10 +36,7 @@ export function ProductCard({ product }) {
                 </Link>
                 <div className="absolute top-1 right-1 z-10">
                     <AuthContextProvider>
-                        {/* <FavoriteButton productId={product?.id} /> */}
-                        <button className="text-pink-600 text-xs md:text-sm px-4 py-1.5 rounded-lg">
-                            <Heart />
-                        </button>
+                        <FavoriteButton productId={product?.id} />
                     </AuthContextProvider>
                 </div>
             </div>
@@ -76,10 +73,7 @@ export function ProductCard({ product }) {
                     </Link>
                 </div>
                 <AuthContextProvider>
-                    {/* <AddToCartButton productId={product?.id} /> */}
-                    <button className="border-2 border-red-600 text-red-600 text-xs md:text-sm px-2 w-full py-1.5 rounded-lg">
-                        Add to Cart
-                    </button>
+                    <AddToCartButton productId={product?.id} />
                 </AuthContextProvider>
             </div>
         </div>

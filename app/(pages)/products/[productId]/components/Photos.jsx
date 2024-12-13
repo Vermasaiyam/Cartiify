@@ -17,9 +17,10 @@ export default function Photos({ imageList }) {
                 />
             </div>
             <div className="flex flex-wrap justify-center items-center gap-3">
-                {imageList?.map((item) => {
+                {imageList?.map((item, index) => {
                     return (
                         <div
+                            key={index}
                             onClick={() => {
                                 setSelectedImage(item);
                             }}
