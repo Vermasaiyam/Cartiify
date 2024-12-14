@@ -145,6 +145,7 @@ export default function Checkout({ productList }) {
                         onChange={(e) => {
                             handleAddress("pincode", e.target.value);
                         }}
+                        min={100000}
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
                         required
                     />
