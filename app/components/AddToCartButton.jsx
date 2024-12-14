@@ -67,7 +67,7 @@ export default function AddToCartButton({ productId, type }) {
                 size="sm"
             >
                 {!isAdded && <ShoppingCart className="text-xs" />}
-                {isAdded && <ShoppingCartIcon className="text-xs" />}
+                {isAdded && <ShoppingCartIcon className="text-base" />}
                 {!isAdded && "Add To Cart"}
                 {isAdded && "Click To Remove"}
             </Button>
@@ -85,7 +85,7 @@ export default function AddToCartButton({ productId, type }) {
             className="border-2 border-red-600 text-red-500 px-1 z-0"
         >
             {!isAdded && <ShoppingCart className="text-xs" />}
-            {isAdded && <ShoppingCartIcon className="text-xs" />}
+            {isAdded && <ShoppingCartIcon className="text-base" />}
         </Button>
     );
 }
