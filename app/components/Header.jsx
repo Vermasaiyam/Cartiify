@@ -1,14 +1,16 @@
 "use client";
 
-import { Search, UserCircle2 } from "lucide-react";
+import { Search, UserCircle2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import LogoutButton from "./LogoutButton";
 import { useAuth } from "@/contexts/AuthContext";
 import AdminButton from "./AdminButton";
 import HeaderClientButtons from "./HeaderClientButtons";
 
 export default function Header() {
+    const router = useRouter();
+
     const menuList = [
         {
             name: "Home",
@@ -58,13 +60,25 @@ export default function Header() {
 
     return (
         <nav className="sticky top-0 z-50 bg-white bg-opacity-65 backdrop-blur-2xl py-2 px-4 md:py-3 md:px-6 lg:px-16 border-b flex items-center justify-between">
-            <Link
-                href={"/"}
-                className="flex flex-row items-center justify-center gap-2 lg:gap-4 text-red-600 font-bold"
-            >
-                <img className="h-6 md:h-8" src="/logo.png" alt="Cartify" />
-                <div className="hidden md:block md:text-xl lg:text-2xl">Cartify</div>
-            </Link>
+            <div className="flex items-center gap-2 md:gap-3">
+                {usePathname() !== "/" && (
+                    <button
+                        onClick={() => router.back()}
+                        className="rounded-full px-2 py-1.5 hover:bg-gray-100 hover:text-red-600 lg:hidden block"
+                        title="Go Back"
+                    >
+                        <ArrowLeft size={20} className="text-gray-700" />
+                    </button>
+                )}
+
+                <Link
+                    href={"/"}
+                    className="flex flex-row items-center justify-center gap-2 lg:gap-4 text-red-600 font-bold"
+                >
+                    <img className="h-6 md:h-8" src="/logo.png" alt="Cartify" />
+                    <div className="hidden md:block md:text-xl lg:text-2xl">Cartify</div>
+                </Link>
+            </div>
 
             <div className="hidden md:flex gap-2 items-center font-semibold">
                 {menuList.map((item, index) => (

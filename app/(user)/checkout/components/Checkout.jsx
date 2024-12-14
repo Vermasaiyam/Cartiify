@@ -189,9 +189,9 @@ export default function Checkout({ productList }) {
                 <section className="flex flex-col gap-3 border rounded-xl p-4">
                     <h1 className="text-xl">Products</h1>
                     <div className="flex flex-col gap-2">
-                        {productList?.map((item) => {
+                        {productList?.map((item, index) => {
                             return (
-                                <div className="flex gap-3 items-center">
+                                <div key={index} className="flex gap-3 items-center">
                                     <img
                                         className="w-10 h-10 object-cover rounded-lg"
                                         src={item?.product?.featureImageURL}

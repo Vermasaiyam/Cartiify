@@ -15,7 +15,7 @@ export default function Layout({ children }) {
 
     if (isLoading) {
         return (
-            <div className="min-h-screen min-w-[100vw] flex justify-center items-center">
+            <div className="min-h-screen min-w-[100vw] flex justify-center items-center overflow-x-hidden">
                 <CircularProgress />
             </div>
         );
