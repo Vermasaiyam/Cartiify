@@ -29,9 +29,14 @@ export default function Page() {
                         <div className="flex justify-center">
                             <img className="h-[200px]" src="/svgs/Empty-pana.svg" alt="" />
                         </div>
-                        <h1 className="text-gray-600 font-semibold">
-                            Please Add Products To Cart
+                        <h1 className="text-gray-600 font-semibold text-2xl">
+                            Your cart is empty
                         </h1>
+                        <Link href={`/`}>
+                            <button className="bg-red-500 hover:bg-red-700 transition-all duration-200 px-5 py-2 text-sm rounded-lg text-white">
+                                Continue Shopping
+                            </button>
+                        </Link>
                     </div>
                 ) : (
                     <>
