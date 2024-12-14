@@ -198,8 +198,8 @@ export default function Checkout({ productList }) {
                                         alt=""
                                     />
                                     <div className="flex-1 flex flex-col">
-                                        <h1 className="text-sm">{item?.product?.title}</h1>
-                                        <h3 className="text-green-600 font-semibold text-[10px]">
+                                        <h1 className="text-base">{item?.product?.title}</h1>
+                                        <h3 className="text-green-600 font-semibold text-xs">
                                             ₹ {item?.product?.salePrice}{" "}
                                             <span className="text-black">X</span>{" "}
                                             <span className="text-gray-600">{item?.quantity}</span>
