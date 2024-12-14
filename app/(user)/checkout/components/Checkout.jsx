@@ -1,10 +1,10 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
-// import {
-//     createCheckoutAndGetURL,
-//     createCheckoutCODAndGetId,
-// } from "@/lib/firestore/checkout/write";
+import {
+    // createCheckoutAndGetURL,
+    createCheckoutCODAndGetId,
+} from "@/lib/firestore/checkout/write";
 import { Button } from "@nextui-org/react";
 import confetti from "canvas-confetti";
 import { CheckSquare2Icon, Square } from "lucide-react";
@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 
 export default function Checkout({ productList }) {
     const [isLoading, setIsLoading] = useState(false);
-    const [paymentMode, setPaymentMode] = useState("prepaid");
+    const [paymentMode, setPaymentMode] = useState("cod");
     const [address, setAddress] = useState(null);
     const [isChecked, setIsChecked] = useState(false);
     const router = useRouter();
@@ -57,12 +57,12 @@ export default function Checkout({ productList }) {
                 // });
                 // router.push(url);
             } else {
-                // const checkoutId = await createCheckoutCODAndGetId({
-                //     uid: user?.uid,
-                //     products: productList,
-                //     address: address,
-                // });
-                // router.push(`/checkout-cod?checkout_id=${checkoutId}`);
+                const checkoutId = await createCheckoutCODAndGetId({
+                    uid: user?.uid,
+                    products: productList,
+                    address: address,
+                });
+                router.push(`/checkout-cod?checkout_id=${checkoutId}`);
                 toast.success("Successfully Placed!");
                 confetti();
             }
@@ -224,7 +224,7 @@ export default function Checkout({ productList }) {
                     <div className="flex flex-col md:flex-row items-center justify-between">
                         <h2 className="text-xl">Payment Mode</h2>
                         <div className="flex items-center gap-3">
-                            <button
+                            {/* <button
                                 onClick={() => {
                                     setPaymentMode("prepaid");
                                 }}
@@ -235,7 +235,7 @@ export default function Checkout({ productList }) {
                                 )}
                                 {paymentMode === "cod" && <Square size={13} />}
                                 Prepaid
-                            </button>
+                            </button> */}
                             <button
                                 onClick={() => {
                                     setPaymentMode("cod");
