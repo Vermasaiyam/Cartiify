@@ -87,6 +87,7 @@ export default function Checkout({ productList }) {
                             handleAddress("fullName", e.target.value);
                         }}
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
+                        required
                     />
                     <input
                         type="tel"
@@ -98,6 +99,7 @@ export default function Checkout({ productList }) {
                             handleAddress("mobile", e.target.value);
                         }}
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
+                        required
                     />
                     <input
                         type="email"
@@ -109,6 +111,7 @@ export default function Checkout({ productList }) {
                             handleAddress("email", e.target.value);
                         }}
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
+                        required
                     />
                     <input
                         type="text"
@@ -120,6 +123,7 @@ export default function Checkout({ productList }) {
                             handleAddress("addressLine1", e.target.value);
                         }}
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
+                        required
                     />
                     <input
                         type="text"
@@ -142,6 +146,7 @@ export default function Checkout({ productList }) {
                             handleAddress("pincode", e.target.value);
                         }}
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
+                        required
                     />
                     <input
                         type="text"
@@ -153,6 +158,7 @@ export default function Checkout({ productList }) {
                             handleAddress("city", e.target.value);
                         }}
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
+                        required
                     />
                     <input
                         type="text"
@@ -164,6 +170,7 @@ export default function Checkout({ productList }) {
                             handleAddress("state", e.target.value);
                         }}
                         className="border px-4 py-2 rounded-lg w-full focus:outline-none"
+                        required
                     />
                     <textarea
                         type="text"
