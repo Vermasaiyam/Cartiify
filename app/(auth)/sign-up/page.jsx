@@ -10,10 +10,13 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import loginIcons from '@/public/signin.gif'
 import toast from "react-hot-toast";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 export default function Page() {
     const { user } = useAuth();
     const router = useRouter();
+    const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState({});
 
@@ -112,6 +115,7 @@ export default function Page() {
                                 handleData("name", e.target.value);
                             }}
                             className="px-3 py-2 rounded-xl border focus:outline-none w-full"
+                            required
                         />
                         <input
                             placeholder="Enter Your Email"
@@ -123,6 +127,7 @@ export default function Page() {
                                 handleData("email", e.target.value);
                             }}
                             className="px-3 py-2 rounded-xl border focus:outline-none w-full"
+                            required
                         />
                         <input
                             placeholder="Enter Your Phone Number"
@@ -134,19 +139,29 @@ export default function Page() {
                                 handleData("phoneNumber", e.target.value);
                             }}
                             min={1000000000}
+                            max={9999999999}
                             className="px-3 py-2 rounded-xl border focus:outline-none w-full"
+                            required
                         />
-                        <input
-                            placeholder="Enter Your Password"
-                            type="password"
-                            name="user-password"
-                            id="user-password"
-                            value={data?.password}
-                            onChange={(e) => {
-                                handleData("password", e.target.value);
-                            }}
-                            className="px-3 py-2 rounded-xl border focus:outline-none w-full"
-                        />
+                        <div className="relative flex items-center">
+                            <input
+                                placeholder="Enter Your Password"
+                                type={showPassword ? "text" : "password"}
+                                name="user-password"
+                                id="user-password"
+                                value={data?.password}
+                                onChange={(e) => handleData("password", e.target.value)}
+                                className="px-3 py-2 rounded-xl border focus:outline-none w-full pr-10"
+                                required
+                            />
+                            <div
+                                className="absolute right-3 text-xl cursor-pointer text-gray-600"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </div>
+                        </div>
+
                         <Button
                             isLoading={isLoading}
                             isDisabled={isLoading}
