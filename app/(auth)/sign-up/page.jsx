@@ -8,6 +8,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import loginIcons from '@/public/signin.gif'
 import toast from "react-hot-toast";
 
 export default function Page() {
@@ -22,6 +23,24 @@ export default function Page() {
             [key]: value,
         });
     };
+
+    const handleUploadPic = async (e) => {
+        const file = e.target.files[0]
+
+        console.log('file', file);
+
+
+        const imagePic = await imageTobase64(file)
+
+        setData((preve) => {
+            return {
+                ...preve,
+                profilePic: imagePic
+            }
+        })
+
+    }
+
     const handleSignUp = async () => {
         setIsLoading(true);
         try {
@@ -40,8 +59,8 @@ export default function Page() {
                 displayName: data?.name,
                 photoURL: user?.photoURL,
             });
-            toast.success("Successfully Sign Up");
-            router.push("/account");
+            toast.success("Account created Successfully");
+            router.push("/");
         } catch (error) {
             toast.error(error?.message);
         }
@@ -58,7 +77,24 @@ export default function Page() {
                     </div>
                 </Link>
                 <div className="flex flex-col gap-3 bg-white md:p-10 p-5 rounded-xl md:min-w-[440px] w-full">
-                    <h1 className="font-bold text-xl">Sign Up With Email</h1>
+                    <h1 className="font-bold text-center text-xl">Create Account</h1>
+                    <div className='w-28 h-28 mx-auto relative overflow-hidden rounded-full'>
+                        <div>
+                            <img
+                                src={data.profilePic ? data.profilePic : loginIcons.src}
+                                alt="Sign Up"
+                                className="rounded-full"
+                            />
+                        </div>
+                        <form>
+                            <label>
+                                <div className='text-xs bg-opacity-80 bg-slate-200 pb-4 pt-2 cursor-pointer text-center absolute bottom-0 w-full'>
+                                    Upload  Photo
+                                </div>
+                                <input type='file' className='hidden' onChange={handleUploadPic} />
+                            </label>
+                        </form>
+                    </div>
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
@@ -97,6 +133,7 @@ export default function Page() {
                             onChange={(e) => {
                                 handleData("phoneNumber", e.target.value);
                             }}
+                            min={1000000000}
                             className="px-3 py-2 rounded-xl border focus:outline-none w-full"
                         />
                         <input
