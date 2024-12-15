@@ -6,10 +6,12 @@ import {
     sendPasswordResetEmail,
 } from "firebase/auth";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function Page() {
+    const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState({});
 
@@ -25,6 +27,7 @@ export default function Page() {
         try {
             await sendPasswordResetEmail(auth, data?.email);
             toast.success("Reset Password Link has been sent to your email!");
+            router.push("/");
         } catch (error) {
             toast.error(error?.message);
         }
