@@ -38,7 +38,7 @@ export default function ListView() {
                 </thead>
                 <tbody>
                     {users?.map((item, index) => {
-                        return <Row index={index} item={item} key={item?.id} />;
+                        return <Row index={index} item={item} key={index} />;
                     })}
                 </tbody>
             </table>
