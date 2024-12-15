@@ -1,6 +1,5 @@
 "use client";
 
-import { useAuth } from "@/contexts/AuthContext";
 import { auth } from "@/lib/firebase";
 import { createUser } from "@/lib/firestore/user/write";
 import { Button } from "@nextui-org/react";
@@ -15,7 +14,6 @@ import { FaEyeSlash } from "react-icons/fa";
 import { CldImage, CldUploadWidget, getCldImageUrl } from "next-cloudinary";
 
 export default function Page() {
-    const { user } = useAuth();
     const router = useRouter();
     const [publicId, setPublicId] = useState("");
     const [showPassword, setShowPassword] = useState(false);
