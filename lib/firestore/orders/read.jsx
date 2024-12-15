@@ -35,6 +35,11 @@ export function useOrder({ id }) {
 }
 
 export function useOrders({ uid }) {
+    if (!uid) {
+        console.error("Error: uid is required in useOrders hook.");
+        return { data: null, error: "uid is undefined", isLoading: false };
+    }
+
     const { data, error } = useSWRSubscription(
         ["orders", uid],
         ([path, uid], { next }) => {
@@ -43,6 +48,7 @@ export function useOrders({ uid }) {
                 where("uid", "==", uid),
                 orderBy("timestampCreate", "desc")
             );
+
             const unsub = onSnapshot(
                 ref,
                 (snapshot) =>
@@ -59,7 +65,7 @@ export function useOrders({ uid }) {
     );
 
     if (error) {
-        console.log(error?.message);
+        console.error("Firestore Error:", error.message);
     }
 
     return { data, error: error?.message, isLoading: data === undefined };
