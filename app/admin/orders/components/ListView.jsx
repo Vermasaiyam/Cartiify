@@ -1,15 +1,10 @@
 "use client";
 
 import { useAllOrders } from "@/lib/firestore/orders/read";
-import { useProducts } from "@/lib/firestore/products/read";
-import { deleteProduct } from "@/lib/firestore/products/write";
 import { useUser } from "@/lib/firestore/user/read";
 import { Avatar, Button, CircularProgress } from "@nextui-org/react";
-import { Edit2, Trash2 } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 
 export default function ListView() {
     const [pageLimit, setPageLimit] = useState(10);
@@ -64,6 +59,9 @@ export default function ListView() {
                         </th>
                         <th className="font-semibold border-y bg-white px-3 py-2 text-left">
                             Customer
+                        </th>
+                        <th className="font-semibold border-y bg-white px-3 py-2 text-left">
+                            Contact Number
                         </th>
                         <th className="font-semibold border-y bg-white px-3 py-2 text-left">
                             Total Price
@@ -130,11 +128,12 @@ export default function ListView() {
 }
 
 function Row({ item, index }) {
-    const [isDeleting, setIsDeleting] = useState(false);
     const totalAmount = item?.checkout?.line_items?.reduce((prev, curr) => {
         return prev + (curr?.price_data?.unit_amount / 100) * curr?.quantity;
     }, 0);
     const { data: user } = useUser({ uid: item?.uid });
+    const address = JSON.parse(item?.checkout?.metadata?.address ?? "");
+
     return (
         <tr>
             <td className="border-y bg-white px-3 py-2 border-l rounded-l-lg text-center">
@@ -144,10 +143,13 @@ function Row({ item, index }) {
                 <div className="flex gap-2 items-center">
                     <Avatar size="sm" src={user?.photoURL} />
                     <div className="flex flex-col">
-                        <h1> {user?.displayName}</h1>
-                        <h1 className="text-xs text-gray-600"> {user?.email}</h1>
+                        <h1> {user?.displayName || address?.fullName}</h1>
+                        <h1 className="text-xs text-gray-600"> {user?.email || address?.email}</h1>
                     </div>
                 </div>
+            </td>
+            <td className="border-y bg-white px-3 py-2">
+                {address?.mobile}
             </td>
             <td className="border-y bg-white px-3 py-2  whitespace-nowrap">
                 ₹ {totalAmount}
