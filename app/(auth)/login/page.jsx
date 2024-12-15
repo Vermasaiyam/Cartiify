@@ -13,10 +13,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
 
 export default function Page() {
     const { user } = useAuth();
     const router = useRouter();
+    const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     const [data, setData] = useState({});
@@ -55,7 +58,7 @@ export default function Page() {
                     </div>
                 </Link>
                 <div className="flex flex-col gap-3 bg-white md:p-10 p-5 rounded-xl md:min-w-[440px] w-full min-w-[350px]">
-                    <h1 className="font-bold text-xl">Login</h1>
+                    <h1 className="font-bold text-xl text-cen">Login</h1>
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
@@ -74,17 +77,24 @@ export default function Page() {
                             }}
                             className="px-3 py-2 rounded-xl border focus:outline-none w-full"
                         />
-                        <input
-                            placeholder="Enter Your Password"
-                            type="password"
-                            name="user-password"
-                            id="user-password"
-                            value={data?.password}
-                            onChange={(e) => {
-                                handleData("password", e.target.value);
-                            }}
-                            className="px-3 py-2 rounded-xl border focus:outline-none w-full"
-                        />
+                        <div className="relative flex items-center">
+                            <input
+                                placeholder="Enter Your Password"
+                                type={showPassword ? "text" : "password"}
+                                name="user-password"
+                                id="user-password"
+                                value={data?.password}
+                                onChange={(e) => handleData("password", e.target.value)}
+                                className="px-3 py-2 rounded-xl border focus:outline-none w-full pr-10"
+                                required
+                            />
+                            <div
+                                className="absolute right-3 text-xl cursor-pointer text-gray-600"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </div>
+                        </div>
                         <div className="flex w-full justify-end">
                             <Link href={`/forget-password`}>
                                 <button className="font-semibold text-sm text-blue-600 hover:underline">
@@ -104,7 +114,7 @@ export default function Page() {
                     <div className="flex justify-between">
                         <Link href={`/sign-up`}>
                             <button className="font-semibold text-sm">
-                                Don't have any account? <span className="text-red-500">Sign Up</span>
+                                Don't have any account? <span className="text-red-500">Create Account</span>
                             </button>
                         </Link>
 

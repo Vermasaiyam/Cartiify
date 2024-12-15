@@ -29,19 +29,14 @@ export default function Page() {
 
     const handleUploadPic = async (e) => {
         const file = e.target.files[0]
-
         console.log('file', file);
-
-
         const imagePic = await imageTobase64(file)
-
         setData((preve) => {
             return {
                 ...preve,
                 profilePic: imagePic
             }
         })
-
     }
 
     const handleSignUp = async () => {
@@ -161,7 +156,6 @@ export default function Page() {
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </div>
                         </div>
-
                         <Button
                             isLoading={isLoading}
                             isDisabled={isLoading}
@@ -174,7 +168,7 @@ export default function Page() {
                     <div className="flex justify-between">
                         <Link href={`/login`}>
                             <button className="font-semibold text-sm">
-                                Already have an Account? <span className="text-red-500">Sign In</span>
+                                Already have an Account? <span className="text-red-500">Login</span>
                             </button>
                         </Link>
                     </div>
