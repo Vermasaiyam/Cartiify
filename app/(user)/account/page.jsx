@@ -6,6 +6,8 @@ import { CircularProgress } from "@nextui-org/react";
 
 export default function Page() {
     const { user } = useAuth();
+    console.log(user?.uid);
+    
 
     const { data: orders, error, isLoading } = useOrders({ uid: user?.uid });
 
@@ -59,16 +61,16 @@ export default function Page() {
                                     {item?.timestampCreate?.toDate()?.toString()}
                                 </h4>
                             </div>
-                            <div>
-                                {item?.checkout?.line_items?.map((product) => {
+                            <div className="flex md:flex-row flex-col md:gap-2 gap-2 flex-wrap">
+                                {item?.checkout?.line_items?.map((product, index) => {
                                     return (
-                                        <div className="flex gap-2 items-center">
+                                        <div key={index} className="flex gap-2 items-center mx-1 border border-opacity-50 border-gray-300 px-1 py-1 rounded-lg">
                                             <img
                                                 className="h-10 w-10 rounded-lg"
                                                 src={product?.price_data?.product_data?.images?.[0]}
                                                 alt="Product Image"
                                             />
-                                            <div>
+                                            <div className="flex flex-1 flex-row md:flex-col justify-between items-center">
                                                 <h1 className="">
                                                     {product?.price_data?.product_data?.name}
                                                 </h1>
