@@ -12,10 +12,12 @@ import loginIcons from '@/public/signin.gif'
 import toast from "react-hot-toast";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import { CldImage, CldUploadWidget, getCldImageUrl } from "next-cloudinary";
 
 export default function Page() {
     const { user } = useAuth();
     const router = useRouter();
+    const [publicId, setPublicId] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState({});
@@ -26,18 +28,6 @@ export default function Page() {
             [key]: value,
         });
     };
-
-    const handleUploadPic = async (e) => {
-        const file = e.target.files[0]
-        console.log('file', file);
-        const imagePic = await imageTobase64(file)
-        setData((preve) => {
-            return {
-                ...preve,
-                profilePic: imagePic
-            }
-        })
-    }
 
     const handleSignUp = async () => {
         setIsLoading(true);
@@ -52,10 +42,16 @@ export default function Page() {
                 phoneNumber: data?.phoneNumber
             });
             const user = credential.user;
+            const url = getCldImageUrl({
+                width: 960,
+                height: 600,
+                src: publicId,
+            });
             await createUser({
                 uid: user?.uid,
                 displayName: data?.name,
-                photoURL: user?.photoURL,
+                phoneNumber: data?.phoneNumber,
+                photoURL: user?.photoURL || url,
             });
             toast.success("Account created Successfully");
             router.push("/");
@@ -78,21 +74,41 @@ export default function Page() {
                     <h1 className="font-bold text-center text-xl">Create Account</h1>
                     <div className='w-28 h-28 mx-auto relative overflow-hidden rounded-full'>
                         <div>
-                            <img
-                                src={data.profilePic ? data.profilePic : loginIcons.src}
-                                alt="Sign Up"
-                                className="rounded-full"
-                            />
+                            {
+                                publicId ? (
+                                    <CldImage src={publicId} alt={publicId} width={"112"} height={"112"} className="rounded-full" />
+                                ) : (
+                                    <img
+                                        src={loginIcons.src}
+                                        alt="Sign Up"
+                                        className="rounded-full"
+                                    />
+                                )
+                            }
                         </div>
-                        <form>
-                            <label>
-                                <div className='text-xs bg-opacity-80 bg-slate-200 pb-4 pt-2 cursor-pointer text-center absolute bottom-0 w-full'>
-                                    Upload  Photo
-                                </div>
-                                <input type='file' className='hidden' onChange={handleUploadPic} />
-                            </label>
-                        </form>
+                        <CldUploadWidget
+                            uploadPreset="cartify"
+                            onSuccess={({ event, info }) => {
+                                if (event === "success") {
+                                    setPublicId(info?.public_id);
+                                }
+                            }}
+                        >
+                            {({ open }) => {
+                                return (
+                                    <div className="flex justify-start">
+                                        <button
+                                            className="text-xs bg-opacity-80 bg-slate-200 pb-4 pt-2 cursor-pointer text-center absolute bottom-0 w-full"
+                                            onClick={() => open()}
+                                        >
+                                            Upload  Photo
+                                        </button>
+                                    </div>
+                                );
+                            }}
+                        </CldUploadWidget>
                     </div>
+
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();

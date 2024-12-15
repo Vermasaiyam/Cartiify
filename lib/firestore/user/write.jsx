@@ -6,7 +6,7 @@ export const createUser = async ({ uid, displayName, phoneNumber, photoURL }) =>
         doc(db, `users/${uid}`),
         {
             displayName: displayName,
-            phoneNumber: phoneNumber,
+            phoneNumber: phoneNumber || "",
             photoURL: photoURL ?? "",
             timestampCreate: Timestamp.now(),
         },
