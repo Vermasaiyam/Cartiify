@@ -25,12 +25,12 @@ export default function HeaderClientButtons() {
                         >
                             <Heart
                                 size={16}
-                                className="block sm:hidden text-gray-700"
+                                className="block sm:hidden text-gray-700 hover:text-red-600"
                             />
                             {/* Larger Icon for Larger Screens */}
                             <Heart
                                 size={20}
-                                className="hidden sm:block text-gray-700"
+                                className="hidden sm:block text-gray-700 hover:text-red-600"
                             />
                         </button>
                     </Badge>
@@ -42,12 +42,12 @@ export default function HeaderClientButtons() {
                     >
                         <Heart
                             size={16}
-                            className="block sm:hidden text-gray-700"
+                            className="block sm:hidden text-gray-700 hover:text-red-600"
                         />
                         {/* Larger Icon for Larger Screens */}
                         <Heart
                             size={20}
-                            className="hidden sm:block text-gray-700"
+                            className="hidden sm:block text-gray-700 hover:text-red-600"
                         />
                     </button>
                 )}
@@ -66,12 +66,12 @@ export default function HeaderClientButtons() {
                         >
                             <ShoppingCart
                                 size={16}
-                                className="block sm:hidden text-gray-700"
+                                className="block sm:hidden text-gray-700 hover:text-red-600"
                             />
                             {/* Larger Icon for Larger Screens */}
                             <ShoppingCart
                                 size={20}
-                                className="hidden sm:block text-gray-700"
+                                className="hidden sm:block text-gray-700 hover:text-red-600"
                             />
                         </button>
                     </Badge>
@@ -83,12 +83,12 @@ export default function HeaderClientButtons() {
                     >
                         <ShoppingCart
                             size={16}
-                            className="block sm:hidden text-gray-700"
+                            className="block sm:hidden text-gray-700 hover:text-red-600"
                         />
                         {/* Larger Icon for Larger Screens */}
                         <ShoppingCart
                             size={20}
-                            className="hidden sm:block text-gray-700"
+                            className="hidden sm:block text-gray-700 hover:text-red-600"
                         />
                     </button>
                 )}
