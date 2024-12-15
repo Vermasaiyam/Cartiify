@@ -4,9 +4,9 @@ import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
 import AuthContextProvider from "@/contexts/AuthContext";
 import AddToCartButton from "./AddToCartButton";
-// import { getProductReviewCounts } from "@/lib/firestore/products/count/read";
-// import { Suspense } from "react";
-// import MyRating from "./MyRating";
+import { getProductReviewCounts } from "@/lib/firestore/products/count/read";
+import { Suspense } from "react";
+import MyRating from "./MyRating";
 import { Heart } from "lucide-react";
 
 export default function ProductsGridView({ products }) {
@@ -55,9 +55,9 @@ export function ProductCard({ product }) {
             <p className="text-xs text-gray-500 line-clamp-2">
                 {product?.shortDescription}
             </p>
-            {/* <Suspense>
+            <Suspense>
                 <RatingReview product={product} />
-            </Suspense> */}
+            </Suspense>
             {product?.stock <= (product?.orders ?? 0) && (
                 <div className="flex">
                     <h3 className="text-red-500 rounded-lg text-xs font-semibold">
@@ -81,15 +81,15 @@ export function ProductCard({ product }) {
     );
 }
 
-// async function RatingReview({ product }) {
-//     const counts = await getProductReviewCounts({ productId: product?.id });
-//     return (
-//         <div className="flex gap-3 items-center">
-//             <MyRating value={counts?.averageRating ?? 0} />
-//             <h1 className="text-xs text-gray-400">
-//                 <span>{counts?.averageRating?.toFixed(1)}</span> ({counts?.totalReviews}
-//                 )
-//             </h1>
-//         </div>
-//     );
-// }
+async function RatingReview({ product }) {
+    const counts = await getProductReviewCounts({ productId: product?.id });
+    return (
+        <div className="flex gap-3 items-center">
+            <MyRating value={counts?.averageRating ?? 0} />
+            <h1 className="text-xs text-gray-400">
+                <span>{counts?.averageRating?.toFixed(1)}</span> ({counts?.totalReviews}
+                )
+            </h1>
+        </div>
+    );
+}
