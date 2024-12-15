@@ -1,11 +1,12 @@
 import { db } from "@/lib/firebase";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
 
-export const createUser = async ({ uid, displayName, phoneNumber, photoURL }) => {
+export const createUser = async ({ uid, email, displayName, phoneNumber, photoURL }) => {
     await setDoc(
         doc(db, `users/${uid}`),
         {
-            displayName: displayName,
+            displayName: displayName || "",
+            email: email || "",
             phoneNumber: phoneNumber || "",
             photoURL: photoURL ?? "",
             timestampCreate: Timestamp.now(),

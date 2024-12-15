@@ -47,6 +47,7 @@ export default function Page() {
             });
             await createUser({
                 uid: user?.uid,
+                email: data?.email,
                 displayName: data?.name,
                 phoneNumber: data?.phoneNumber,
                 photoURL: user?.photoURL || url,
