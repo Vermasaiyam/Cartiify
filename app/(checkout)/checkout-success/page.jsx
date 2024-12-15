@@ -2,10 +2,11 @@ import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import { admin, adminDB } from "@/lib/firebase_admin";
 import Link from "next/link";
+import SuccessMessage from "./components/SuccessMessage";
 
 const fetchCheckout = async (checkoutId) => {
     const list = await adminDB
-        .collectionGroup("checkout_sessions_cod")
+        .collectionGroup("checkout_sessions")
         .where("id", "==", checkoutId)
         .get();
     if (list.docs.length === 0) {
@@ -14,23 +15,31 @@ const fetchCheckout = async (checkoutId) => {
     return list.docs[0].data();
 };
 
-const processOrder = async ({ checkout }) => {
-    const order = await adminDB.doc(`orders/${checkout?.id}`).get();
+const fetchPayment = async (checkoutId) => {
+    const list = await adminDB
+        .collectionGroup("payments")
+        .where("metadata.checkoutId", "==", checkoutId)
+        .where("status", "==", "succeeded")
+        .get();
+    if (list.docs.length === 0) {
+        throw new Error("Invalid Checkout ID");
+    }
+    return list.docs[0].data();
+};
+
+const processOrder = async ({ payment, checkout }) => {
+    const order = await adminDB.doc(`orders/${payment?.id}`).get();
     if (order.exists) {
         return false;
     }
-    const uid = checkout?.metadata?.uid;
+    const uid = payment?.metadata?.uid;
 
-    await adminDB.doc(`orders/${checkout?.id}`).set({
+    await adminDB.doc(`orders/${payment?.id}`).set({
         checkout: checkout,
-        payment: {
-            amount: checkout?.line_items?.reduce((prev, curr) => {
-                return prev + curr?.price_data?.unit_amount * curr?.quantity;
-            }, 0),
-        },
+        payment: payment,
         uid: uid,
-        id: checkout?.id,
-        paymentMode: "cod",
+        id: payment?.id,
+        paymentMode: "prepaid",
         timestampCreate: admin.firestore.Timestamp.now(),
     });
 
@@ -71,12 +80,14 @@ const processOrder = async ({ checkout }) => {
 export default async function Page({ searchParams }) {
     const { checkout_id } = searchParams;
     const checkout = await fetchCheckout(checkout_id);
+    const payment = await fetchPayment(checkout_id);
 
-    const result = await processOrder({ checkout });
+    const result = await processOrder({ checkout, payment });
 
     return (
         <main>
             <Header />
+            <SuccessMessage />
             <section className="min-h-screen flex flex-col gap-3 justify-center items-center">
                 <div className="flex justify-center w-full">
                     <img src="/svgs/Mobile payments-rafiki.svg" className="h-48" alt="" />
@@ -87,7 +98,7 @@ export default async function Page({ searchParams }) {
                 </h1>
                 <div className="flex items-center gap-4 text-sm">
                     <Link href={"/account"}>
-                        <button className="text-red-600 border border-red-600 px-5 py-2 rounded-lg bg-white">
+                        <button className="text-blue-600 border border-blue-600 px-5 py-2 rounded-lg bg-white">
                             Go To Orders Page
                         </button>
                     </Link>
