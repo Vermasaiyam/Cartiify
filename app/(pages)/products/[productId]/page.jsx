@@ -2,8 +2,8 @@ import { getProduct } from "@/lib/firestore/products/read_server";
 import Photos from "./components/Photos";
 import Details from "./components/Details";
 import RelatedProducts from "./components/RelatedProducts";
-// import Reviews from "./components/Reviews";
-// import AddReview from "./components/AddReiveiw";
+import Reviews from "./components/Reviews";
+import AddReview from "./components/AddReview";
 import AuthContextProvider from "@/contexts/AuthContext";
 
 export async function generateMetadata({ params }) {
@@ -33,8 +33,8 @@ export default async function Page({ params }) {
             <div className="flex justify-center py-10">
                 <AuthContextProvider>
                     <div className="flex flex-col md:flex-row gap-4 md:max-w-[900px] w-full">
-                        {/* <AddReview productId={productId} />
-                        <Reviews productId={productId} /> */}
+                        <AddReview productId={productId} />
+                        <Reviews productId={productId} />
                     </div>
                 </AuthContextProvider>
             </div>
