@@ -2,8 +2,8 @@
 
 import { useOrdersCountsByTotalDays } from "@/lib/firestore/orders/read_count";
 import CountMeter from "./components/CountMeter";
-// import OrdersChart from "./components/OrdersChart";
-// import RevenueChart from "./components/RevenueChart";
+import OrdersChart from "./components/OrdersChart";
+import RevenueChart from "./components/RevenueChart";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -25,8 +25,8 @@ export default function Page() {
         <main className="flex flex-col gap-6 p-5">
             <CountMeter />
             <div className="flex flex-col md:flex-row gap-5">
-                {/* <RevenueChart items={data} />
-                <OrdersChart items={data} /> */}
+                <RevenueChart items={data} />
+                <OrdersChart items={data} />
             </div>
         </main>
     );
