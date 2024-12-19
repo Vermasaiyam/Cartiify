@@ -57,7 +57,7 @@ export function ProductCard({ product }) {
                 <h1 className="font-semibold line-clamp-2 text-sm">{product?.title}</h1>
             </Link>
             <div className="">
-                <h2 className="text-green-500 text-sm font-semibold flex gap-2">
+                <h2 className="text-green-500 text-sm font-semibold flex gap-2 items-center">
                     <div className="">
                         ₹ {product?.salePrice}{" "}
                         <span className="line-through text-xs text-gray-600">

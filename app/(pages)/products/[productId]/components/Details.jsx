@@ -35,7 +35,7 @@ export default function Details({ product }) {
             <h2 className="text-gray-600 text-sm line-clamp-3 md:line-clamp-4">
                 {product?.shortDescription}
             </h2>
-            <h3 className="text-green-500 font-bold text-lg flex gap-3">
+            <h3 className="text-green-500 font-bold text-lg flex gap-3 items-center">
                 <div className="">
                     ₹ {product?.salePrice}{" "}
                     <span className="line-through text-gray-700 text-sm">
