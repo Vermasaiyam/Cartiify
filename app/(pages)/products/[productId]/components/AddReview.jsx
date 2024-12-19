@@ -25,7 +25,8 @@ export default function AddReview({ productId }) {
                 throw new Error("Message cannot be empty or contain only spaces.");
             }
             await addReview({
-                displayName: userData?.displayName || user?.email,
+                displayName: userData?.displayName,
+                email: user?.email,
                 message: message,
                 photoURL: userData?.photoURL,
                 productId: productId,

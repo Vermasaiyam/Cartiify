@@ -16,6 +16,15 @@ export default function Reviews({ productId }) {
     const { user } = useAuth();
     const { data: userData } = useUser({ uid: user?.uid });
 
+    function maskEmail(email) {
+        if (!email || !email.includes("@")) return email;
+        const [localPart, domain] = email.split("@");
+        if (localPart.length <= 3) {
+            return `${localPart[0] || ""}${"*".repeat(localPart.length - 1)}@${domain}`;
+        }
+        return `${localPart.slice(0, 2)}${"*".repeat(localPart.length - 3)}${localPart.slice(-1)}@${domain}`;
+    }
+
     const handleDelete = async () => {
         if (!confirm("Are you sure?")) return;
         setIsLoading(true);
@@ -47,7 +56,13 @@ export default function Reviews({ productId }) {
                             <div className="flex-1 flex flex-col">
                                 <div className="flex justify-between">
                                     <div>
-                                        <h1 className="font-semibold">{item?.displayName}</h1>
+                                        {
+                                            item?.displayName ? (
+                                                <h1 className="font-semibold">{item?.displayName}</h1>
+                                            ) : (
+                                                <h1 className="font-semibold">{maskEmail(item?.email)}</h1>
+                                            )
+                                        }
                                         <Rating value={item?.rating} readOnly size="small" />
                                     </div>
                                     {user?.uid === item?.uid && (

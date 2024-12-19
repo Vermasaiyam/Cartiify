@@ -7,6 +7,7 @@ export const addReview = async ({
     message,
     productId,
     displayName,
+    email,
     photoURL,
 }) => {
     const ref = doc(db, `products/${productId}/reviews/${uid}`);
@@ -16,6 +17,7 @@ export const addReview = async ({
         productId: productId ?? "",
         uid: uid ?? "",
         displayName: displayName ?? "",
+        email: email ?? "",
         photoURL: photoURL ?? "",
         timestamp: Timestamp.now(),
     });
