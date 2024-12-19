@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, UserCircle2, ArrowLeft } from "lucide-react";
+import { Search, UserCircle2, ArrowLeft, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import LogoutButton from "./LogoutButton";
@@ -9,26 +9,39 @@ import AdminButton from "./AdminButton";
 import HeaderClientButtons from "./HeaderClientButtons";
 import { Avatar } from "@nextui-org/react";
 import { useUser } from "@/lib/firestore/user/read";
+import { useState } from "react";
+import { FaHome, FaClipboardList } from "react-icons/fa";
+import { AiFillProduct } from "react-icons/ai";
+import { MdContactMail } from "react-icons/md";
 
 export default function Header() {
     const router = useRouter();
+    const [isOpen, setIsOpen] = useState(false);
+
+    function toggleSidebar() {
+        setIsOpen(!isOpen);
+    }
 
     const menuList = [
         {
             name: "Home",
             link: "/",
+            icon: <FaHome />
         },
         {
             name: "Products",
             link: "/all-products",
+            icon: <AiFillProduct />
         },
         {
             name: "My Orders",
             link: "/my-orders",
+            icon: <FaClipboardList />
         },
         {
             name: "Contact",
             link: "/contact-us",
+            icon: <MdContactMail />
         },
     ];
     const isActive = (path) => {
@@ -100,7 +113,7 @@ export default function Header() {
                 </Link>
             </div>
 
-            <div className="hidden md:flex gap-2 items-center font-semibold">
+            <div className="hidden lg:flex gap-2 items-center font-semibold">
                 {menuList.map((item, index) => (
                     <Link key={index} href={item.link}>
                         <button
@@ -115,7 +128,7 @@ export default function Header() {
                 <AdminButton isActive={isActive} />
             </div>
 
-            <div className="flex items-center gap-1">
+            <div className="hidden lg:flex items-center gap-1">
                 <Link href={`/search`}>
                     <button
                         title="Search Products"
@@ -127,6 +140,37 @@ export default function Header() {
                 </Link>
                 <UserChecking />
             </div>
+
+            <button className="block lg:hidden" onClick={toggleSidebar}>
+                <Menu />
+            </button>
+
+            {
+                isOpen && (
+                    <Sidebar menuList={menuList} isActive={isActive} toggleSidebar={toggleSidebar} />
+                )
+            }
         </nav>
     );
+}
+
+function Sidebar({ menuList, isActive, toggleSidebar }) {
+    return (
+        <div className="">
+            <div className="flex flex-row gap-2 items-center font-semibold">
+                {menuList.map((item, index) => (
+                    <Link key={index} href={item.link}>
+                        <button
+                            className={`text-base px-4 py-2 rounded-lg hover:text-red-600 hover:bg-gray-100 ${isActive(
+                                item.link
+                            )}`}
+                        >
+                            {item.name}
+                        </button>
+                    </Link>
+                ))}
+                <AdminButton isActive={isActive} />
+            </div>
+        </div>
+    )
 }
