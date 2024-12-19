@@ -3,7 +3,7 @@
 import { useUsers } from "@/lib/firestore/user/read";
 import { Avatar, CircularProgress } from "@nextui-org/react";
 
-export default function ListView() {
+export default function Listview() {
     const { data: users, error, isLoading } = useUsers();
 
     if (isLoading) {

@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-export default function ListView() {
+export default function Listview() {
     const [pageLimit, setPageLimit] = useState(10);
     const [lastSnapDocList, setLastSnapDocList] = useState([]);
 

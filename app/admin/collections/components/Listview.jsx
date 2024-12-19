@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function ListView() {
+export default function Listview() {
     const { data: collections, error, isLoading } = useCollections();
 
     if (isLoading) {

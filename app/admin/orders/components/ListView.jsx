@@ -6,7 +6,7 @@ import { Avatar, Button, CircularProgress } from "@nextui-org/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export default function ListView() {
+export default function Listview() {
     const [pageLimit, setPageLimit] = useState(10);
     const [lastSnapDocList, setLastSnapDocList] = useState([]);
 

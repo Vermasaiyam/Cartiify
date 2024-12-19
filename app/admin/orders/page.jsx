@@ -1,4 +1,4 @@
-import ListView from "./components/ListView";
+import Listview from "./components/Listview";
 
 export default function Page() {
     return (
@@ -6,7 +6,7 @@ export default function Page() {
             <div className="flex justify-between items-center">
                 <h1 className="text-xl">Orders</h1>
             </div>
-            <ListView />
+            <Listview />
         </main>
     );
 }

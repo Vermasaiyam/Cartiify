@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ListView from "./components/ListView";
+import Listview from "./components/Listview";
 
 export default function Page() {
     return (
@@ -12,7 +12,7 @@ export default function Page() {
                     </button>
                 </Link>
             </div>
-            <ListView />
+            <Listview />
         </main>
     );
 }
