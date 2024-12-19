@@ -22,10 +22,10 @@ export default function Header() {
             name: "My Orders",
             link: "/my-orders",
         },
-        {
-            name: "About",
-            link: "/about-us",
-        },
+        // {
+        //     name: "About",
+        //     link: "/about-us",
+        // },
         {
             name: "Contact",
             link: "/contact-us",

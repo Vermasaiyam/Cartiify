@@ -9,10 +9,19 @@ export default function ShareButton({ product }) {
     const [copied, setCopied] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [productLink, setProductLink] = useState("");
+    const [shareMessage, setShareMessage] = useState("");
 
     useEffect(() => {
-        if (typeof window !== "undefined") {
-            setProductLink(`${window.location.origin}/product/${product?.id}`);
+        if (typeof window !== "undefined" && product) {
+            const link = `${window.location.origin}/product/${product.id}`;
+            const message = `
+                🛍️ *${product.title}* 🛍️
+                ✨ ${product.shortDescription}
+                💰 Price: ${product.salePrice || product.price}
+                🔗 Link: ${link}
+            `;
+            setProductLink(link);
+            setShareMessage(message);
         }
     }, [product]);
 
