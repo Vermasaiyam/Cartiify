@@ -17,6 +17,10 @@ export default function Header() {
             link: "/",
         },
         {
+            name: "My Orders",
+            link: "/my-orders",
+        },
+        {
             name: "About",
             link: "/about-us",
         },
