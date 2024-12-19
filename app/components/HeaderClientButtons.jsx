@@ -6,7 +6,7 @@ import { Badge } from "@nextui-org/react";
 import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
-export default function HeaderClientButtons() {
+export default function HeaderClientButtons({isActive}) {
     const { user } = useAuth();
     const { data } = useUser({ uid: user?.uid });
     return (
@@ -21,16 +21,15 @@ export default function HeaderClientButtons() {
                     >
                         <button
                             title="My Favorites"
-                            className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50"
+                            className={`h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50 ${isActive('/favourites')}`}
                         >
                             <Heart
                                 size={16}
-                                className="block sm:hidden text-gray-700 hover:text-red-600"
+                                className={`block sm:hidden text-gray-700 hover:text-red-600 ${isActive('/favourites')}`}
                             />
-                            {/* Larger Icon for Larger Screens */}
                             <Heart
                                 size={20}
-                                className="hidden sm:block text-gray-700 hover:text-red-600"
+                                className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/favourites')}`}
                             />
                         </button>
                     </Badge>
@@ -38,16 +37,16 @@ export default function HeaderClientButtons() {
                 {(data?.favorites?.length ?? 0) === 0 && (
                     <button
                         title="My Favorites"
-                        className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50"
+                        className={`h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50 ${isActive('/favourites')}`}
                     >
                         <Heart
                             size={16}
-                            className="block sm:hidden text-gray-700 hover:text-red-600"
+                            className={`block sm:hidden text-gray-700 hover:text-red-600 ${isActive('/favourites')}`}
                         />
                         {/* Larger Icon for Larger Screens */}
                         <Heart
                             size={20}
-                            className="hidden sm:block text-gray-700 hover:text-red-600"
+                            className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/favourites')}`}
                         />
                     </button>
                 )}
@@ -62,16 +61,15 @@ export default function HeaderClientButtons() {
                     >
                         <button
                             title="My Cart"
-                            className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50"
+                            className={`h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50 ${isActive('/cart')}`}
                         >
                             <ShoppingCart
                                 size={16}
-                                className="block sm:hidden text-gray-700 hover:text-red-600"
+                                className={`block sm:hidden text-gray-700 hover:text-red-600 ${isActive('/cart')}`}
                             />
-                            {/* Larger Icon for Larger Screens */}
                             <ShoppingCart
                                 size={20}
-                                className="hidden sm:block text-gray-700 hover:text-red-600"
+                                className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/cart')}`}
                             />
                         </button>
                     </Badge>
@@ -79,16 +77,15 @@ export default function HeaderClientButtons() {
                 {(data?.carts?.length ?? 0) === 0 && (
                     <button
                         title="My Cart"
-                        className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50"
+                        className={`h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50 ${isActive('/cart')}`}
                     >
                         <ShoppingCart
                             size={16}
-                            className="block sm:hidden text-gray-700 hover:text-red-600"
+                            className={`block sm:hidden text-gray-700 hover:text-red-600 ${isActive('/cart')}`}
                         />
-                        {/* Larger Icon for Larger Screens */}
                         <ShoppingCart
                             size={20}
-                            className="hidden sm:block text-gray-700 hover:text-red-600"
+                            className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/cart')}`}
                         />
                     </button>
                 )}

@@ -27,7 +27,7 @@ export default function Header() {
     ];
     const isActive = (path) => {
         const pathname = usePathname();
-        return pathname === path ? "text-red-500 font-bold" : "";
+        return pathname === path ? "text-red-500 font-bold bg-gray-100" : "";
     }
 
     function UserChecking() {
@@ -43,14 +43,14 @@ export default function Header() {
         }
         return (
             <>
-                <HeaderClientButtons />
+                <HeaderClientButtons isActive={isActive}/>
                 <Link href={`/account`}>
                     <button
                         title="My Account"
-                        className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600"
+                        className={`h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600 ${isActive('/account')}`}
                     >
-                        <UserCircle2 size={16} className="block sm:hidden text-gray-700 hover:text-red-600" />
-                        <UserCircle2 size={20} className="hidden sm:block text-gray-700 hover:text-red-600" />
+                        <UserCircle2 size={16} className={`block sm:hidden text-gray-700 hover:text-red-600 ${isActive('/account')}`} />
+                        <UserCircle2 size={20} className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/account')}`} />
                     </button>
                 </Link>
                 <LogoutButton />
@@ -95,14 +95,14 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-1">
-                <AdminButton />
+                <AdminButton isActive={isActive} />
                 <Link href={`/search`}>
                     <button
                         title="Search Products"
-                        className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600"
+                        className={`h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 ${isActive('/search')}`}
                     >
-                        <Search size={16} className="block sm:hidden text-gray-700 hover:text-red-600" />
-                        <Search size={20} className="hidden sm:block text-gray-700 hover:text-red-600" />
+                        <Search size={16} className={`block sm:hidden text-gray-700 hover:text-red-600 ${isActive('/search')}`} />
+                        <Search size={20} className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/search')}`} />
                     </button>
                 </Link>
                 <UserChecking />
