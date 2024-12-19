@@ -1,7 +1,8 @@
-"user client";
+"use client";
 
 import { useAuth } from "@/contexts/AuthContext";
 import { useUser } from "@/lib/firestore/user/read";
+import { CircularProgress } from "@nextui-org/react";
 import Link from "next/link";
 
 export default function Page() {
@@ -26,11 +27,13 @@ export default function Page() {
         );
     }
 
+    const formattedDate = data?.timestampCreate ? data.timestampCreate.toDate().toLocaleDateString() : '';
+
     return (
         <div className="min-h-[70vh] w-full items-center grid grid-cols-1 md:grid-cols-2 gap-4 bg-white p-4">
             <div className="flex flex-col items-center">
                 <h1 className="text-3xl font-bold text-gray-800 mb-4">My Profile</h1>
-                <img src="/user.png" alt="Profile Picture" className="rounded-full w-52 h-52 mx-auto" />
+                <img src={data?.photoURL || data?.imageURL || '/user.png'} alt="Profile Picture" className="rounded-full w-52 h-52 mx-auto" />
                 <Link href={'update'}>
                     <button className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white  py-2 px-4 rounded mt-4">
                         Edit Profile
@@ -57,7 +60,7 @@ export default function Page() {
                 }
                 <div className="mb-4">
                     <p className="block text-gray-700 text-2xl font-bold mb-2">Joined On:</p>
-                    <p className="text-gray-900 text-xl font-normal">{data?.timestampCreate}</p>
+                    <p className="text-gray-900 text-xl font-normal">{formattedDate}</p>
                 </div>
 
                 <div className="flex space-x-4">
@@ -66,11 +69,13 @@ export default function Page() {
                             My Orders
                         </button>
                     </Link>
-                    <button className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white font-bold py-2 px-4 rounded">
-                        Change Password
-                    </button>
+                    <Link href={'/forget-password'}>
+                        <button className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white font-bold py-2 px-4 rounded">
+                            Change Password
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
-    )
+    );
 }
