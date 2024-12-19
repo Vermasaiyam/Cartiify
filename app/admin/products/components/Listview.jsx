@@ -81,15 +81,17 @@ export default function ListView() {
                     </tr>
                 </thead>
                 <tbody>
-                    {products?.map((item, index) => {
-                        return (
-                            <Row
-                                index={index + lastSnapDocList?.length * pageLimit}
-                                item={item}
-                                key={item?.id}
-                            />
-                        );
-                    })}
+                    {
+                        products?.map((item, index) => {
+                            return (
+                                <Row
+                                    index={index + lastSnapDocList?.length * pageLimit}
+                                    item={item}
+                                    key={item?.id}
+                                />
+                            );
+                        })
+                    }
                 </tbody>
             </table>
             <div className="flex justify-between text-sm py-3">
