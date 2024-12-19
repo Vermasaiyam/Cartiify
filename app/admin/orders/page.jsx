@@ -1,4 +1,4 @@
-import Listview from "./components/Listview";
+import Listview from "./components/ListView";
 
 export default function Page() {
     return (
