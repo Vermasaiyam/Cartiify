@@ -25,10 +25,11 @@ export default function LogoutButton() {
                     toast.error(error?.message);
                 }
             }}
-            className="h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-50"
+            className="text-white bg-red-500 hover:bg-red-700 transition-all duration-200 md:px-4 md:py-2 px-3 py-1.5 md:ml-4 ml-2 md:text-sm text-xs rounded-full flex gap-1.5 items-center"
         >
-            <LogOut size={16} className="block sm:hidden text-gray-700 hover:text-red-600" />
-            <LogOut size={20} className="hidden sm:block text-gray-700 hover:text-red-600" />
+            <LogOut size={12} className="block sm:hidden text-white" />
+            <LogOut size={16} className="hidden sm:block text-white" />
+            <div className="">Logout</div>
         </button>
     );
 }

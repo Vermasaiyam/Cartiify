@@ -54,7 +54,14 @@ export default function Header() {
                 <Link href={`/account`}>
                     {
                         data?.photoURL ? (
-                            <Avatar size="xs" src={data?.photoURL || "/user.png"} />
+                            <>
+                                <div className="block sm:hidden">
+                                    <Avatar className="avatar-mobile" src={data?.photoURL || "/user.png"} />
+                                </div>
+                                <div className="hidden sm:block">
+                                    <Avatar className="avatar-desktop" src={data?.photoURL || "/user.png"} />
+                                </div>
+                            </>
                         ) : (
                             <button
                                 title="My Account"
