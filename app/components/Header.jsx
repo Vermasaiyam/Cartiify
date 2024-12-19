@@ -7,6 +7,8 @@ import LogoutButton from "./LogoutButton";
 import { useAuth } from "@/contexts/AuthContext";
 import AdminButton from "./AdminButton";
 import HeaderClientButtons from "./HeaderClientButtons";
+import { Avatar } from "@nextui-org/react";
+import { useUser } from "@/lib/firestore/user/read";
 
 export default function Header() {
     const router = useRouter();
@@ -36,6 +38,7 @@ export default function Header() {
 
     function UserChecking() {
         const { user } = useAuth();
+        const { data } = useUser({ uid: user?.uid });
         if (!user) {
             return (
                 <Link href={"/login"}>
@@ -47,15 +50,21 @@ export default function Header() {
         }
         return (
             <>
-                <HeaderClientButtons isActive={isActive}/>
+                <HeaderClientButtons isActive={isActive} />
                 <Link href={`/account`}>
-                    <button
-                        title="My Account"
-                        className={`h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600 ${isActive('/account')}`}
-                    >
-                        <UserCircle2 size={16} className={`block sm:hidden text-gray-700 hover:text-red-600 ${isActive('/account')}`} />
-                        <UserCircle2 size={20} className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/account')}`} />
-                    </button>
+                    {
+                        data?.photoURL ? (
+                            <Avatar size="xs" src={data?.photoURL || "/user.png"} />
+                        ) : (
+                            <button
+                                title="My Account"
+                                className={`h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600 ${isActive('/account')}`}
+                            >
+                                <UserCircle2 size={16} className={`block sm:hidden text-gray-700 hover:text-red-600 ${isActive('/account')}`} />
+                                <UserCircle2 size={20} className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/account')}`} />
+                            </button>
+                        )
+                    }
                 </Link>
                 <LogoutButton />
             </>
