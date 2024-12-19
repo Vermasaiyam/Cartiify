@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Listview from "./components/Listview";
 
 export default function Page() {
