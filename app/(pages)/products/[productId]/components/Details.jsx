@@ -7,13 +7,17 @@ import { getCategory } from "@/lib/firestore/categories/read_server";
 import { getProductReviewCounts } from "@/lib/firestore/products/count/read";
 import Link from "next/link";
 import { Suspense } from "react";
+import ShareButton from "./ShareButton";
 
 export default function Details({ product }) {
     return (
         <div className="w-full flex flex-col gap-3 z-0">
-            <div className="flex gap-3">
-                <Category categoryId={product?.categoryId} />
-                <Brand brandId={product?.brandId} />
+            <div className="flex justify-between items-center">
+                <div className="flex gap-3">
+                    <Category categoryId={product?.categoryId} />
+                    <Brand brandId={product?.brandId} />
+                </div>
+                <ShareButton product={product}/>
             </div>
             <h1 className="font-semibold text-xl md:text-4xl">{product?.title}</h1>
             <Suspense fallback="Failed To Load">
