@@ -53,13 +53,13 @@ export default function Header() {
                 <HeaderClientButtons isActive={isActive} />
                 <Link href={`/account`}>
                     {
-                        data?.photoURL ? (
+                        (data?.photoURL || data?.imageURL) ? (
                             <>
                                 <div className="block sm:hidden">
-                                    <Avatar className="avatar-mobile" src={data?.photoURL || "/user.png"} />
+                                    <Avatar className="avatar-mobile" src={data?.photoURL || data?.imageURL || "/user.png"} />
                                 </div>
                                 <div className="hidden sm:block">
-                                    <Avatar className="avatar-desktop" src={data?.photoURL || "/user.png"} />
+                                    <Avatar className="avatar-desktop" src={data?.photoURL || data?.imageURL || "/user.png"} />
                                 </div>
                             </>
                         ) : (

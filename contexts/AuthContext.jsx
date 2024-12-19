@@ -2,7 +2,7 @@
 
 import { auth } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
@@ -24,6 +24,7 @@ export default function AuthContextProvider({ children }) {
         <AuthContext.Provider
             value={{
                 user,
+                setUser,
                 isLoading: user === undefined,
             }}
         >
