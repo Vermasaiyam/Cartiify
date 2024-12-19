@@ -7,8 +7,6 @@ import Link from "next/link";
 
 export default function Page() {
     const { user } = useAuth();
-    console.log(user);
-
     const { data, isLoading, error } = useUser({ uid: user?.uid });
 
     if (isLoading) {
@@ -34,7 +32,8 @@ export default function Page() {
             <div className="flex flex-col items-center">
                 <h1 className="text-3xl font-bold text-gray-800 mb-4">My Profile</h1>
                 <img src={data?.photoURL || data?.imageURL || '/user.png'} alt="Profile Picture" className="rounded-full w-52 h-52 mx-auto" />
-                <Link href={'update'}>
+                <Link
+                    href={'/account/update'}>
                     <button className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white  py-2 px-4 rounded mt-4">
                         Edit Profile
                     </button>
