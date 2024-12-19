@@ -7,6 +7,7 @@ import AddToCartButton from "./AddToCartButton";
 import { getProductReviewCounts } from "@/lib/firestore/products/count/read";
 import { Suspense } from "react";
 import MyRating from "./MyRating";
+import ShareButton from "./ShareButton";
 
 export default function ProductsGridView({ products }) {
     return (
@@ -38,6 +39,9 @@ export function ProductCard({ product }) {
                     <AuthContextProvider>
                         <FavoriteButton productId={product?.id} />
                     </AuthContextProvider>
+                </div>
+                <div className="absolute top-1 left-1 z-10">
+                    <ShareButton product={product} />
                 </div>
             </div>
             <Link href={`/products/${product?.id}`}>

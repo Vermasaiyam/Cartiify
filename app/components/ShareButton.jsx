@@ -32,13 +32,12 @@ export default function ShareButton({ product }) {
 
     return (
         <>
-            <div className="flex items-center hover:bg-gray-100 py-1.5 px-3 rounded-full">
+            <div className="flex items-center hover:bg-gray-100 p-1.5 rounded-full">
                 <button
                     onClick={() => setIsOpen(true)}
                     className="flex items-center text-gray-700 hover:text-gray-900"
                 >
-                    <FiShare2 className="text-2xl mr-2" />
-                    <div className="hidden md:block">Share</div>
+                    <FiShare2 className="text-lg" />
                 </button>
             </div>
 
