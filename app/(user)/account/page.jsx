@@ -40,7 +40,7 @@ export default function Page() {
                 </Link>
             </div>
 
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-2">
                 <div className="mb-4">
                     <p className="block text-gray-700 text-2xl font-bold mb-2">Full Name:</p>
                     <p className="text-gray-900 text-xl font-normal">{data?.displayName || data.name}</p>

@@ -77,7 +77,7 @@ export default function Page() {
             await updateUser({
                 uid: user?.uid,
                 email: formData?.email,
-                displayName: formData?.name,
+                displayName: formData?.displayName,
                 phoneNumber: formData?.phoneNumber,
                 photoURL: url || formData?.photoURL,
             });
