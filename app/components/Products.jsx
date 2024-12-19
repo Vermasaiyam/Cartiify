@@ -7,7 +7,6 @@ import AddToCartButton from "./AddToCartButton";
 import { getProductReviewCounts } from "@/lib/firestore/products/count/read";
 import { Suspense } from "react";
 import MyRating from "./MyRating";
-import { Heart } from "lucide-react";
 
 export default function ProductsGridView({ products }) {
     return (

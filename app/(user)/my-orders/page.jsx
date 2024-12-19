@@ -3,11 +3,12 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useOrders } from "@/lib/firestore/orders/read";
 import { CircularProgress } from "@nextui-org/react";
+import Link from "next/link";
 
 export default function Page() {
     const { user } = useAuth();
     console.log(user?.uid);
-    
+
 
     const { data: orders, error, isLoading } = useOrders({ uid: user?.uid });
 
@@ -65,15 +66,19 @@ export default function Page() {
                                 {item?.checkout?.line_items?.map((product, index) => {
                                     return (
                                         <div key={index} className="flex gap-2 items-center mx-1 border border-opacity-50 border-gray-300 px-1 py-1 rounded-lg">
-                                            <img
-                                                className="h-10 w-10 rounded-lg"
-                                                src={product?.price_data?.product_data?.images?.[0]}
-                                                alt="Product Image"
-                                            />
+                                            <Link href={`/products/${product?.price_data?.product_data?.metadata?.productId}`}>
+                                                <img
+                                                    className="h-10 w-10 rounded-lg"
+                                                    src={product?.price_data?.product_data?.images?.[0]}
+                                                    alt="Product Image"
+                                                />
+                                            </Link>
                                             <div className="flex flex-1 flex-row md:flex-col justify-between items-center">
-                                                <h1 className="">
-                                                    {product?.price_data?.product_data?.name}
-                                                </h1>
+                                                <Link href={`/products/${product?.price_data?.product_data?.metadata?.productId}`}>
+                                                    <h1 className="">
+                                                        {product?.price_data?.product_data?.name}
+                                                    </h1>
+                                                </Link>
                                                 <h1 className="text-gray-500 text-xs">
                                                     ₹ {product?.price_data?.unit_amount / 100}{" "}
                                                     <span>X</span>{" "}
