@@ -25,6 +25,15 @@ export default function ProductsGridView({ products }) {
 }
 
 export function ProductCard({ product }) {
+    function Discount(salePrice, price) {
+        if (price <= 0) {
+            return 0;
+        }
+
+        const discount = ((price - salePrice) / price) * 100;
+        return Math.round(discount);
+    }
+
     return (
         <div className="flex flex-col gap-3 border p-4 rounded-lg">
             <div className="relative w-full">
@@ -48,10 +57,15 @@ export function ProductCard({ product }) {
                 <h1 className="font-semibold line-clamp-2 text-sm">{product?.title}</h1>
             </Link>
             <div className="">
-                <h2 className="text-green-500 text-sm font-semibold">
-                    ₹ {product?.salePrice}{" "}
-                    <span className="line-through text-xs text-gray-600">
-                        ₹ {product?.price}
+                <h2 className="text-green-500 text-sm font-semibold flex gap-2">
+                    <div className="">
+                        ₹ {product?.salePrice}{" "}
+                        <span className="line-through text-xs text-gray-600">
+                            ₹ {product?.price}
+                        </span>
+                    </div>
+                    <span className="text-red-400">
+                        {`${Discount(product.salePrice, product.price)}% off`}
                     </span>
                 </h2>
             </div>
@@ -71,7 +85,10 @@ export function ProductCard({ product }) {
             <div className="flex items-center gap-4 w-full">
                 <div className="w-full">
                     <Link href={`/checkout?type=buynow&productId=${product?.id}`}>
-                        <button className="flex-1 bg-red-500 hover:bg-red-700 transition-all duration-200 text-white px-4 py-2 rounded-lg text-xs w-full">
+                        <button
+                            className="flex-1 bg-red-500 hover:bg-red-700 transition-all duration-200 text-white px-4 py-2 rounded-lg text-xs w-full"
+                            disabled={product?.stock <= (product?.orders ?? 0)}
+                        >
                             Buy Now
                         </button>
                     </Link>

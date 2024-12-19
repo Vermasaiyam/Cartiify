@@ -10,6 +10,15 @@ import { Suspense } from "react";
 import ShareButton from "./ShareButton";
 
 export default function Details({ product }) {
+    function Discount(salePrice, price) {
+        if (price <= 0) {
+            return 0;
+        }
+
+        const discount = ((price - salePrice) / price) * 100;
+        return Math.round(discount);
+    }
+
     return (
         <div className="w-full flex flex-col gap-3 z-0">
             <div className="flex justify-between items-center">
@@ -17,7 +26,7 @@ export default function Details({ product }) {
                     <Category categoryId={product?.categoryId} />
                     <Brand brandId={product?.brandId} />
                 </div>
-                <ShareButton product={product}/>
+                <ShareButton product={product} />
             </div>
             <h1 className="font-semibold text-xl md:text-4xl">{product?.title}</h1>
             <Suspense fallback="Failed To Load">
@@ -26,15 +35,23 @@ export default function Details({ product }) {
             <h2 className="text-gray-600 text-sm line-clamp-3 md:line-clamp-4">
                 {product?.shortDescription}
             </h2>
-            <h3 className="text-green-500 font-bold text-lg">
-                ₹ {product?.salePrice}{" "}
-                <span className="line-through text-gray-700 text-sm">
-                    ₹ {product?.price}
+            <h3 className="text-green-500 font-bold text-lg flex gap-3">
+                <div className="">
+                    ₹ {product?.salePrice}{" "}
+                    <span className="line-through text-gray-700 text-sm">
+                        ₹ {product?.price}
+                    </span>
+                </div>
+                <span className="text-red-400 text-base">
+                    {`${Discount(product.salePrice, product.price)}% off`}
                 </span>
             </h3>
             <div className="flex flex-wrap items-center gap-4">
                 <Link href={`/checkout?type=buynow&productId=${product?.id}`}>
-                    <button className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white rounded-lg px-4 py-1.5">
+                    <button
+                        className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white rounded-lg px-4 py-1.5"
+                        disabled={product?.stock <= (product?.orders ?? 0)}
+                    >
                         Buy Now
                     </button>
                 </Link>
