@@ -1,13 +1,13 @@
 "use client";
 
+import { Suspense, useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ProductCard } from "@/app/components/Products";
 import { searchProducts } from "@/lib/firestore/search/products";
-import { useState, useEffect } from "react";
 import { Button } from "@nextui-org/react";
 import { Search } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
 
-export default function Page() {
+function SearchPageContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [query, setQuery] = useState(searchParams.get("q") || "");
@@ -31,7 +31,6 @@ export default function Page() {
         if (!query.trim()) return;
 
         router.push(`?q=${encodeURIComponent(query)}`);
-
         fetchResults(query);
     };
 
@@ -84,5 +83,13 @@ export default function Page() {
                 </p>
             )}
         </main>
+    );
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<p>Loading...</p>}>
+            <SearchPageContent />
+        </Suspense>
     );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProductsByIds } from "@/lib/firestore/products/read";
 import { useUser } from "@/lib/firestore/user/read";
@@ -7,7 +8,7 @@ import { CircularProgress } from "@nextui-org/react";
 import { useSearchParams } from "next/navigation";
 import Checkout from "./components/Checkout";
 
-export default function Page() {
+function CheckoutContent() {
     const { user } = useAuth();
     const { data } = useUser({ uid: user?.uid });
 
@@ -38,7 +39,7 @@ export default function Page() {
         return <div>{error}</div>;
     }
 
-    if (!productIdsList && productIdsList?.length === 0) {
+    if (!productIdsList || productIdsList?.length === 0) {
         return (
             <div>
                 <h1>Products Not Found</h1>
@@ -67,5 +68,13 @@ export default function Page() {
             <h1 className="text-xl">Checkout</h1>
             <Checkout productList={productList} />
         </main>
+    );
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<CircularProgress />}>
+            <CheckoutContent />
+        </Suspense>
     );
 }
