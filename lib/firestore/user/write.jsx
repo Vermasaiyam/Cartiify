@@ -16,23 +16,36 @@ export const createUser = async ({ uid, email, displayName, phoneNumber, photoUR
 };
 
 export const updateUser = async ({ uid, email, displayName, phoneNumber, photoURL }) => {
-    const userRef = doc(db, `users/${uid}`);
-    const userDoc = await getDoc(userRef);
+    try {
+        if (!uid) {
+            throw new Error('User ID is required');
+        }
+        console.log("photo url", photoURL);
 
-    const timestampCreate = userDoc.exists() ? userDoc.data().timestampCreate : Timestamp.now();
+        const userRef = doc(db, `users/${uid}`);
+        const userDoc = await getDoc(userRef);
 
-    await setDoc(
-        userRef,
-        {
-            displayName: displayName || "",
-            email: email || "",
-            phoneNumber: phoneNumber || "",
-            photoURL: photoURL ?? "",
-            timestampCreate,
-        },
-        { merge: true }
-    );
+        if (!userDoc.exists()) {
+            return;
+        }
+
+        const existingData = userDoc.data();
+
+        const updatedData = {
+            displayName: displayName || existingData.displayName || "",
+            email: email || existingData.email || "",
+            phoneNumber: phoneNumber || existingData.phoneNumber || "",
+            photoURL: photoURL || existingData.photoURL || "",
+            timestampCreate: existingData.timestampCreate || Timestamp.now(),
+        };
+        console.log("updated data", updatedData);
+
+        await setDoc(userRef, updatedData, { merge: true });
+    } catch (error) {
+        console.error('Error updating user data:', error);
+    }
 };
+
 
 export const updateFavorites = async ({ uid, list }) => {
     await setDoc(
