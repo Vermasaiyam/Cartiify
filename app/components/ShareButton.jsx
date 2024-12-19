@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { Dialog } from "@headlessui/react";
 import { IoMdShareAlt } from "react-icons/io";
@@ -11,8 +11,8 @@ export default function ShareButton({ product }) {
     const [productLink, setProductLink] = useState("");
 
     useEffect(() => {
-        if (typeof window !== "undefined" && product) {
-            setProductLink(`${window.location.origin}/product/${product.id}`);
+        if (typeof window !== "undefined") {
+            setProductLink(`${window.location.origin}/product/${product?.id}`);
         }
     }, [product]);
 
@@ -23,47 +23,11 @@ export default function ShareButton({ product }) {
     };
 
     const shareOptions = [
-        {
-            name: "WhatsApp",
-            url: `https://wa.me/?text=${encodeURIComponent(`
-                ${product.title} 
-                ${product.shortDescription} 
-                Price: ₹${product.salePrice} 
-                <strike>₹${product.price}</strike>
-                ${productLink}
-            `)}`,
-            image: "/whatsapp.jpeg",
-        },
-        {
-            name: "Facebook",
-            url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productLink)}&quote=${encodeURIComponent(`
-                ${product.title}
-                ${product.shortDescription}
-                Price: ₹${product.salePrice} 
-                <strike>₹${product.price}</strike>
-            `)}`,
-            image: "/facebook.png",
-        },
-        {
-            name: "X",
-            url: `https://x.com/intent/tweet?url=${encodeURIComponent(productLink)}&text=${encodeURIComponent(`
-                ${product.title} 
-                ${product.shortDescription} 
-                Price: ₹${product.salePrice} 
-                <strike>₹${product.price}</strike}
-            `)}`,
-            image: "/X.png",
-        },
-        {
-            name: "LinkedIn",
-            url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(productLink)}&title=${encodeURIComponent(product.title)}&summary=${encodeURIComponent(product.shortDescription)}`,
-            image: "/linkedin.png",
-        },
-        {
-            name: "Instagram",
-            url: `https://www.instagram.com/?url=${encodeURIComponent(productLink)}`,
-            image: "/instagram.jpeg",
-        },
+        { name: "WhatsApp", url: `https://wa.me/?text=${encodeURIComponent(productLink)}`, image: "/whatsapp.jpeg" },
+        { name: "Facebook", url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productLink)}`, image: "/facebook.png" },
+        { name: "X", url: `https://x.com/intent/tweet?url=${encodeURIComponent(productLink)}`, image: "/X.png" },
+        { name: "LinkedIn", url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(productLink)}`, image: "/linkedin.png" },
+        { name: "Instagram", url: `https://www.instagram.com/?url=${encodeURIComponent(productLink)}`, image: "/instagram.jpeg" },
     ];
 
     return (
@@ -82,7 +46,7 @@ export default function ShareButton({ product }) {
                     <Dialog.Panel className="bg-white p-6 rounded-lg max-w-xl w-full mx-1">
                         <Dialog.Title className="text-xl font-semibold mb-4">Share Product</Dialog.Title>
                         <div className="flex flex-col gap-2">
-                            <div className="flex items-center gap-2 bg-gray-100 p-2 rounded-md w-full">
+                            <div className="flex items-center gap-2 bg-gray-100 p-2 rounded-md w-full ">
                                 <div className="flex-1 break-words line-clamp-1 text-gray-700 text-xs md:text-sm lg:text-base" title={productLink}>
                                     {productLink}
                                 </div>
@@ -127,5 +91,5 @@ export default function ShareButton({ product }) {
                 </div>
             </Dialog>
         </>
-    );
+    )
 }
