@@ -117,7 +117,6 @@ export default function Sidebar({ toggleSidebar }) {
     );
 }
 
-// bg-[#879fff]
 function Tab({ item }) {
     const pathname = usePathname();
     const isSelected = pathname === item?.link;
