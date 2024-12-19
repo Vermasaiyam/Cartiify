@@ -1,11 +1,12 @@
 "use client";
 
+import { Suspense } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useUser } from "@/lib/firestore/user/read";
 import { CircularProgress } from "@nextui-org/react";
 import { useSearchParams } from "next/navigation";
 
-export default function Layout({ children }) {
+function LayoutContent({ children }) {
     const searchParams = useSearchParams();
     const type = searchParams.get("type");
     const productId = searchParams.get("productId");
@@ -41,4 +42,18 @@ export default function Layout({ children }) {
     }
 
     return <>{children}</>;
+}
+
+export default function Layout({ children }) {
+    return (
+        <Suspense
+            fallback={
+                <div className="min-h-screen flex justify-center items-center">
+                    <CircularProgress />
+                </div>
+            }
+        >
+            <LayoutContent>{children}</LayoutContent>
+        </Suspense>
+    );
 }
