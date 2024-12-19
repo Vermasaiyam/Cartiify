@@ -20,7 +20,6 @@ export const updateUser = async ({ uid, email, displayName, phoneNumber, photoUR
         if (!uid) {
             throw new Error('User ID is required');
         }
-        console.log("photo url", photoURL);
 
         const userRef = doc(db, `users/${uid}`);
         const userDoc = await getDoc(userRef);
@@ -38,7 +37,6 @@ export const updateUser = async ({ uid, email, displayName, phoneNumber, photoUR
             photoURL: photoURL || existingData.photoURL || "",
             timestampCreate: existingData.timestampCreate || Timestamp.now(),
         };
-        console.log("updated data", updatedData);
 
         await setDoc(userRef, updatedData, { merge: true });
     } catch (error) {

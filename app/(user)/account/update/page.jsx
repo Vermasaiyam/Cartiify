@@ -73,7 +73,6 @@ export default function Page() {
                 setIsSubmitting(false);
                 return;
             }
-            console.log("client data", formData?.photoURL);
 
             await updateUser({
                 uid: user?.uid,
