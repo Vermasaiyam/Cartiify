@@ -19,13 +19,13 @@ export default function Header() {
             link: "/",
         },
         {
+            name: "Products",
+            link: "/all-products",
+        },
+        {
             name: "My Orders",
             link: "/my-orders",
         },
-        // {
-        //     name: "About",
-        //     link: "/about-us",
-        // },
         {
             name: "Contact",
             link: "/contact-us",
@@ -112,10 +112,10 @@ export default function Header() {
                         </button>
                     </Link>
                 ))}
+                <AdminButton isActive={isActive} />
             </div>
 
             <div className="flex items-center gap-1">
-                <AdminButton isActive={isActive} />
                 <Link href={`/search`}>
                     <button
                         title="Search Products"
