@@ -18,7 +18,7 @@ export default function HeaderClientButtons({ isActive }) {
                     <Badge
                         variant="solid"
                         size="sm"
-                        className="text-white bg-red-500 text-[8px] hidden lg:block"
+                        className="text-white bg-red-500 text-[8px] hidden lg:flex"
                         content={data?.favorites?.length ?? 0}
                     >
                         <button
@@ -27,16 +27,16 @@ export default function HeaderClientButtons({ isActive }) {
                         >
                             <FaRegHeart
                                 size={16}
-                                className={`block sm:hidden hover:text-red-600 ${isActive('/favourites')}`}
+                                className={`block lg:hidden hover:text-red-600 ${isActive('/favourites')}`}
                             />
-                            <div className="">
+                            <Heart
+                                size={20}
+                                className={`hidden lg:block text-gray-700 hover:text-red-600 ${isActive('/favourites')}`}
+                            />
+                            <div className="lg:hidden block">
                                 Favourites{" "}
                                 <span className="text-sm">({data?.favorites?.length ?? 0})</span>
                             </div>
-                            <Heart
-                                size={20}
-                                className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/favourites')}`}
-                            />
                         </button>
                     </Badge>
                 )}
@@ -47,13 +47,13 @@ export default function HeaderClientButtons({ isActive }) {
                     >
                         <FaRegHeart
                             size={16}
-                            className={`block sm:hidden hover:text-red-600 ${isActive('/favourites')}`}
+                            className={`block lg:hidden hover:text-red-600 ${isActive('/favourites')}`}
                         />
-                        <div className="">Favourites</div>
                         <Heart
                             size={20}
-                            className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/favourites')}`}
+                            className={`hidden lg:block text-gray-700 hover:text-red-600 ${isActive('/favourites')}`}
                         />
+                        <div className="lg:hidden block">Favourites</div>
                     </button>
                 )}
             </Link>
@@ -62,7 +62,7 @@ export default function HeaderClientButtons({ isActive }) {
                     <Badge
                         variant="solid"
                         size="sm"
-                        className="text-white bg-red-500 text-[8px] hidden lg:block"
+                        className="text-white bg-red-500 text-[8px] hidden lg:flex"
                         content={data?.carts?.length ?? 0}
                     >
                         <button
@@ -72,16 +72,16 @@ export default function HeaderClientButtons({ isActive }) {
                         >
                             <MdOutlineShoppingCart
                                 size={20}
-                                className={`block sm:hidden hover:text-red-600 ${isActive('/cart')}`}
+                                className={`block lg:hidden hover:text-red-600 ${isActive('/cart')}`}
                             />
-                            <div className="">
+                            <ShoppingCart
+                                size={20}
+                                className={`hidden lg:block text-gray-700 hover:text-red-600 ${isActive('/cart')}`}
+                            />
+                            <div className="lg:hidden block">
                                 Cart{" "}
                                 <span className="text-sm">({data?.carts?.length ?? 0})</span>
                             </div>
-                            <ShoppingCart
-                                size={20}
-                                className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/cart')}`}
-                            />
                         </button>
                     </Badge>
                 )}
@@ -92,13 +92,13 @@ export default function HeaderClientButtons({ isActive }) {
                     >
                         <MdOutlineShoppingCart
                             size={20}
-                            className={`block sm:hidden hover:text-red-600 ${isActive('/cart')}`}
+                            className={`block lg:hidden hover:text-red-600 ${isActive('/cart')}`}
                         />
-                        <div className="">Cart</div>
                         <ShoppingCart
                             size={20}
-                            className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/cart')}`}
+                            className={`hidden lg:block text-gray-700 hover:text-red-600 ${isActive('/cart')}`}
                         />
+                        <div className="lg:hidden block">Cart</div>
                     </button>
                 )}
             </Link>

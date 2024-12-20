@@ -147,14 +147,19 @@ export default function Header() {
 
             {
                 isOpen && (
-                    <Sidebar menuList={menuList} isActive={isActive} toggleSidebar={toggleSidebar} isOpen={isOpen} />
+                    <Sidebar menuList={menuList} toggleSidebar={toggleSidebar} isOpen={isOpen} />
                 )
             }
         </nav>
     );
 }
 
-function Sidebar({ menuList, isActive, toggleSidebar, isOpen }) {
+function Sidebar({ menuList, toggleSidebar, isOpen }) {
+    const isActive = (path) => {
+        const pathname = usePathname();
+        return pathname === path ? "w-full p-1 font-bold bg-red-300 text-white" : "";
+    }
+
     function UserChecking() {
         const { user } = useAuth();
         if (!user) {
@@ -183,9 +188,9 @@ function Sidebar({ menuList, isActive, toggleSidebar, isOpen }) {
         return (
             <>
                 <Link href={`/account`} className="flex flex-row gap-2 items-center">
-                    <div className="">
+                    <div className="mx-1">
                         {(data?.photoURL || data?.imageURL) ? (
-                            <div className="block sm:hidden ml-1 my-2">
+                            <div className="block sm:hidden my-2">
                                 <Avatar className="avatar-mobile" src={data?.photoURL || data?.imageURL || "/user.png"} />
                             </div>
                         ) : (
@@ -193,8 +198,7 @@ function Sidebar({ menuList, isActive, toggleSidebar, isOpen }) {
                                 title="My Account"
                                 className={`h-8 w-8 flex justify-center items-center rounded-full hover:bg-gray-100 hover:text-red-600 ${isActive('/account')}`}
                             >
-                                <UserCircle2 size={16} className={`block sm:hidden text-gray-700 hover:text-red-600 ${isActive('/account')}`} />
-                                <UserCircle2 size={20} className={`hidden sm:block text-gray-700 hover:text-red-600 ${isActive('/account')}`} />
+                                <UserCircle2 size={20} className={`block text-gray-700 hover:text-red-600 ${isActive('/account')}`} />
                             </button>
                         )}
                     </div>
@@ -238,7 +242,7 @@ function Sidebar({ menuList, isActive, toggleSidebar, isOpen }) {
                             title="Search Products"
                             className={`flex gap-2 justify-center items-center rounded-full hover:bg-gray-100 ${isActive('/search')}`}
                         >
-                            <FaSearch size={16} className={`block sm:hidden hover:text-red-600 ${isActive('/search')}`} />
+                            <FaSearch size={16} className={`block hover:text-red-600 ${isActive('/search')}`} />
                             <div className="">Search</div>
                         </button>
                     </Link>

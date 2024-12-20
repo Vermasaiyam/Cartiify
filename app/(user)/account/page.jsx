@@ -68,7 +68,7 @@ export default function Page() {
                             My Orders
                         </button>
                     </Link>
-                    <Link href={'/forget-password'}>
+                    <Link href={'/change-password'}>
                         <button className="bg-red-500 hover:bg-red-700 transition-all duration-200 text-white font-bold py-2 px-4 rounded">
                             Change Password
                         </button>
