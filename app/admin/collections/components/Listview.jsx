@@ -22,7 +22,7 @@ export default function Listview() {
         return <div>{error}</div>;
     }
     return (
-        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl">
+        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl overflow-x-auto">
             <h1 className="text-xl">Collections</h1>
             <table className="border-separate border-spacing-y-3">
                 <thead>

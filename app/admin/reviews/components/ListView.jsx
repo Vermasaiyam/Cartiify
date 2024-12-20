@@ -14,7 +14,7 @@ export default function Listview() {
     const { data: reviews } = useAllReview();
 
     return (
-        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl">
+        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl overflow-x-auto">
             <div className="flex flex-col gap-4">
                 {reviews?.map((item) => {
                     return <ReviewCard item={item} key={item?.id} />;
