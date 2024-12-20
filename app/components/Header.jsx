@@ -68,10 +68,10 @@ export default function Header() {
                     {
                         (data?.photoURL || data?.imageURL) ? (
                             <>
-                                <div className="block sm:hidden">
+                                <div className="block sm:hidden ml-1">
                                     <Avatar className="avatar-mobile" src={data?.photoURL || data?.imageURL || "/user.png"} />
                                 </div>
-                                <div className="hidden sm:block">
+                                <div className="hidden sm:block ml-1">
                                     <Avatar className="avatar-desktop" src={data?.photoURL || data?.imageURL || "/user.png"} />
                                 </div>
                             </>
