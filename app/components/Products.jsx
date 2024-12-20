@@ -1,23 +1,85 @@
 "use client";
 
+import { Suspense, useState } from "react";
 import Link from "next/link";
 import FavoriteButton from "./FavoriteButton";
 import AuthContextProvider from "@/contexts/AuthContext";
 import AddToCartButton from "./AddToCartButton";
 import { getProductReviewCounts } from "@/lib/firestore/products/count/read";
-import { Suspense } from "react";
 import MyRating from "./MyRating";
 import ShareButton from "./ShareButton";
+import { Button } from "@nextui-org/react";
 
 export default function ProductsGridView({ products }) {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [entriesPerPage, setEntriesPerPage] = useState(5);
+
+    const totalPages = Math.ceil(products.length / entriesPerPage);
+
+    const handleEntriesChange = (event) => {
+        setEntriesPerPage(Number(event.target.value));
+        setCurrentPage(1);
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage((prev) => prev + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage((prev) => prev - 1);
+        }
+    };
+
+    const paginatedProducts = products.slice(
+        (currentPage - 1) * entriesPerPage,
+        currentPage * entriesPerPage
+    );
+
     return (
         <section className="w-full flex justify-center">
             <div className="flex flex-col gap-5 lg:w-[80%] md:w-[90%] w-[95%] p-5">
-                <h1 className="text-center font-semibold text-lg">Products</h1>
+                <div className="flex justify-between items-center">
+                    <h1 className="text-center font-semibold text-lg">Products</h1>
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 w-full">
-                    {products?.map((item) => {
-                        return <ProductCard product={item} key={item?.id} />;
-                    })}
+                    {paginatedProducts.map((item) => (
+                        <ProductCard product={item} key={item?.id} />
+                    ))}
+                </div>
+                <div className="flex justify-between text-sm py-3">
+                    <Button
+                        isDisabled={currentPage === 1}
+                        onClick={handlePrevPage}
+                        size="sm"
+                        variant="bordered"
+                    >
+                        Previous
+                    </Button>
+                    <select
+                        value={entriesPerPage}
+                        onChange={handleEntriesChange}
+                        className="px-2 rounded-xl border py-1"
+                        name="perpage"
+                        id="perpage"
+                    >
+                        <option value={3}>3 Items</option>
+                        <option value={5}>5 Items</option>
+                        <option value={10}>10 Items</option>
+                        <option value={20}>20 Items</option>
+                        <option value={50}>50 Items</option>
+                        <option value={100}>100 Items</option>
+                    </select>
+                    <Button
+                        isDisabled={currentPage === totalPages}
+                        onClick={handleNextPage}
+                        size="sm"
+                        variant="bordered"
+                    >
+                        Next
+                    </Button>
                 </div>
             </div>
         </section>
