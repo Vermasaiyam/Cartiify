@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
 
 export default function ChangePasswordPage() {
     const router = useRouter();
@@ -102,7 +102,7 @@ export default function ChangePasswordPage() {
                                 id="new-password"
                                 value={data.newPassword}
                                 onChange={(e) => {
-                                    handleData("oldPassword", e.target.value);
+                                    handleData("newPassword", e.target.value);
                                 }}
                                 className="px-3 py-2 rounded-xl border focus:outline-none w-full pr-10"
                                 required
@@ -123,12 +123,13 @@ export default function ChangePasswordPage() {
                             Change Password
                         </Button>
                     </form>
-                    <div className="flex justify-between">
+                    <div className="flex w-full justify-end">
                         <button
-                            className="font-semibold text-sm text-blue-700"
+                            className="font-semibold text-sm text-blue-700 flex w-full gap-2 items-center justify-end"
                             onClick={() => router.push("/")}
                         >
-                            Home
+                            <FaArrowLeft />
+                            Back to Home
                         </button>
                     </div>
                 </div>
