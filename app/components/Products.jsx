@@ -64,9 +64,13 @@ export function ProductCard({ product }) {
                             ₹ {product?.price}
                         </span>
                     </div>
-                    <span className="text-red-400">
-                        {`${Discount(product.salePrice, product.price)}% off`}
-                    </span>
+                    {
+                        (product?.salePrice && product?.price) && (
+                            <span className="text-red-400">
+                                {`${Discount(product?.salePrice, product?.price)}% off`}
+                            </span>
+                        )
+                    }
                 </h2>
             </div>
             <p className="text-xs text-gray-500 line-clamp-2">

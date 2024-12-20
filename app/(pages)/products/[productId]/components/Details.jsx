@@ -42,9 +42,13 @@ export default function Details({ product }) {
                         ₹ {product?.price}
                     </span>
                 </div>
-                <span className="text-red-400 text-base">
-                    {`${Discount(product.salePrice, product.price)}% off`}
-                </span>
+                {
+                    (product?.salePrice && product?.price) && (
+                        <span className="text-red-400 text-base">
+                            {`${Discount(product?.salePrice, product?.price)}% off`}
+                        </span>
+                    )
+                }
             </h3>
             <div className="flex flex-wrap items-center gap-4">
                 <Link href={`/checkout?type=buynow&productId=${product?.id}`}>
