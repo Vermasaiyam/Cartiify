@@ -157,7 +157,7 @@ export default function Header() {
 function Sidebar({ menuList, toggleSidebar, isOpen }) {
     const isActive = (path) => {
         const pathname = usePathname();
-        return pathname === path ? "w-full p-1 font-bold bg-red-300 text-white" : "";
+        return pathname === path ? "w-full font-bold bg-red-300 text-white" : "";
     }
 
     function UserChecking() {
@@ -166,7 +166,7 @@ function Sidebar({ menuList, toggleSidebar, isOpen }) {
             return <></>;
         }
         return (
-            <div className="flex flex-col gap-5 font-semibold">
+            <div className="flex flex-col gap-4 font-semibold">
                 <HeaderClientButtons isActive={isActive} />
             </div>
         );
@@ -225,11 +225,11 @@ function Sidebar({ menuList, toggleSidebar, isOpen }) {
                 className={`fixed top-0 right-0 h-screen bg-gray-100 sm:min-w-[40vw] md:min-w-[30vw] flex flex-col transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
             >
-                <div className="flex flex-col gap-5 font-semibold mt-12 px-2 flex-grow">
+                <div className="flex flex-col gap-4 font-semibold mt-12 px-2 flex-grow">
                     {menuList.map((item, index) => (
                         <Link key={index} href={item.link}>
                             <button
-                                className={`text-base rounded-lg hover:text-red-600 hover:bg-gray-100 flex gap-2 items-center ${isActive(item.link)}`}
+                                className={`text-base rounded-lg hover:text-red-600 hover:bg-gray-100 p-1 flex gap-2 items-center ${isActive(item.link)}`}
                             >
                                 <div className="">{item.icon}</div>
                                 <div className="">{item.name}</div>
@@ -240,7 +240,7 @@ function Sidebar({ menuList, toggleSidebar, isOpen }) {
                     <Link href={`/search`}>
                         <button
                             title="Search Products"
-                            className={`flex gap-2 justify-center items-center rounded-full hover:bg-gray-100 ${isActive('/search')}`}
+                            className={`flex gap-2 justify-center items-center p-1 hover:bg-gray-100 ${isActive('/search')}`}
                         >
                             <FaSearch size={16} className={`block hover:text-red-600 ${isActive('/search')}`} />
                             <div className="">Search</div>
