@@ -109,7 +109,7 @@ export default function Header() {
                     className="flex flex-row items-center justify-center gap-2 lg:gap-4 text-red-600 font-bold"
                 >
                     <img className="h-6 md:h-8" src="/logo.png" alt="Cartify" />
-                    <div className="hidden md:block md:text-xl lg:text-2xl">Cartify</div>
+                    <div className="block sm:text-lg md:text-xl lg:text-2xl">Cartify</div>
                 </Link>
             </div>
 
@@ -225,7 +225,16 @@ function Sidebar({ menuList, toggleSidebar, isOpen }) {
                 className={`fixed top-0 right-0 h-screen bg-gray-100 sm:min-w-[40vw] md:min-w-[30vw] flex flex-col transform transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
             >
-                <div className="flex flex-col gap-4 font-semibold mt-12 px-2 flex-grow">
+                <div className="flex justify-center pt-12">
+                    <Link
+                        href={"/"}
+                        className="flex flex-row items-center justify-center gap-4 text-red-600 font-bold"
+                    >
+                        <img className="h-10" src="/logo.png" alt="Cartify" />
+                        <div className="text-2xl">Cartify</div>
+                    </Link>
+                </div>
+                <div className="flex flex-col gap-4 font-semibold mt-4 px-2 flex-grow">
                     {menuList.map((item, index) => (
                         <Link key={index} href={item.link}>
                             <button
