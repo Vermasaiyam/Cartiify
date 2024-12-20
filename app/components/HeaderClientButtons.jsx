@@ -23,7 +23,7 @@ export default function HeaderClientButtons({ isActive }) {
                     >
                         <button
                             title="My Favorites"
-                            className={`lg:h-8 lg:w-8 flex gap-2 items-center justify-center rounded-full p-1 lg:p-0 hover:bg-gray-50 ${isActive('/favourites')}`}
+                            className={`lg:h-8 lg:w-8 flex gap-2 items-center lg:justify-center lg:rounded-full rounded-lg w-full p-1 lg:p-0 lg:hover:bg-gray-50 ${isActive('/favourites')}`}
                         >
                             <FaRegHeart
                                 size={16}
@@ -43,7 +43,7 @@ export default function HeaderClientButtons({ isActive }) {
                 {(data?.favorites?.length ?? 0) === 0 && (
                     <button
                         title="My Favorites"
-                        className={`lg:h-8 lg:w-8 flex gap-2 items-center justify-center rounded-full p-1 lg:p-0 hover:bg-gray-50 ${isActive('/favourites')}`}
+                        className={`lg:h-8 lg:w-8 flex gap-2 items-center lg:justify-center lg:rounded-full rounded-lg w-full p-1 lg:p-0 lg:hover:bg-gray-50 ${isActive('/favourites')}`}
                     >
                         <FaRegHeart
                             size={16}
@@ -67,7 +67,7 @@ export default function HeaderClientButtons({ isActive }) {
                     >
                         <button
                             title="My Cart"
-                            className={`lg:h-8 lg:w-8 flex gap-2 items-center justify-center rounded-full p-1 lg:p-0 hover:bg-gray-50 ${isActive('/cart')}`}
+                            className={`lg:h-8 lg:w-8 flex gap-2 items-center lg:justify-center lg:rounded-full rounded-lg w-full p-1 lg:p-0 lg:hover:bg-gray-50 ${isActive('/cart')}`}
 
                         >
                             <MdOutlineShoppingCart
@@ -88,7 +88,7 @@ export default function HeaderClientButtons({ isActive }) {
                 {(data?.carts?.length ?? 0) === 0 && (
                     <button
                         title="My Cart"
-                        className={`lg:h-8 lg:w-8 flex gap-2 items-center justify-center rounded-full p-1 lg:p-0 hover:bg-gray-50 ${isActive('/cart')}`}
+                        className={`lg:h-8 lg:w-8 flex gap-2 items-center lg:justify-center lg:rounded-full rounded-lg w-full p-1 lg:p-0 lg:hover:bg-gray-50 ${isActive('/cart')}`}
                     >
                         <MdOutlineShoppingCart
                             size={20}
