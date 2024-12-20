@@ -245,7 +245,6 @@ function Sidebar({ menuList, toggleSidebar, isOpen }) {
                             </button>
                         </Link>
                     ))}
-                    <AdminButton isActive={isActive} />
                     <Link href={`/search`}>
                         <button
                             title="Search Products"
@@ -256,6 +255,8 @@ function Sidebar({ menuList, toggleSidebar, isOpen }) {
                         </button>
                     </Link>
                     <UserChecking />
+                    <hr className="bg-gray-500"/>
+                    <AdminButton isActive={isActive} />
                 </div>
 
                 <div className="mt-auto px-2 pb-4">

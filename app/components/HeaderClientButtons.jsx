@@ -12,7 +12,7 @@ export default function HeaderClientButtons({ isActive }) {
     const { user } = useAuth();
     const { data } = useUser({ uid: user?.uid });
     return (
-        <div className="flex lg:flex-row flex-col lg:items-center lg:gap-1 gap-5 font-semibold lg:font-normal">
+        <div className="flex lg:flex-row flex-col lg:items-center lg:gap-1 gap-4 font-semibold lg:font-normal">
             <Link href={`/favourites`}>
                 {(data?.favorites?.length ?? 0) != 0 && (
                     <Badge
