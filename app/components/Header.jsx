@@ -240,9 +240,9 @@ function Sidebar({ menuList, toggleSidebar, isOpen }) {
                     <Link href={`/search`}>
                         <button
                             title="Search Products"
-                            className={`flex gap-2 justify-center items-center p-1 hover:bg-gray-100 ${isActive('/search')}`}
+                            className={`text-base rounded-lg hover:text-red-600 hover:bg-gray-100 p-1 flex gap-2 items-center ${isActive('/search')}`}
                         >
-                            <FaSearch size={16} className={`block hover:text-red-600 ${isActive('/search')}`} />
+                            <FaSearch size={16} />
                             <div className="">Search</div>
                         </button>
                     </Link>
