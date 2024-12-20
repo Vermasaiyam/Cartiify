@@ -25,7 +25,7 @@ export default function LogoutButton() {
                     toast.error(error?.message);
                 }
             }}
-            className="text-white bg-red-500 hover:bg-red-700 transition-all duration-200 md:px-4 md:py-2 px-3 py-1.5 md:ml-4 ml-2 md:text-sm text-xs rounded-full flex gap-1.5 items-center"
+            className="text-white bg-red-500 hover:bg-red-700 transition-all duration-200 lg:px-4 lg:py-2 px-3 py-1.5 lg:ml-4 md:text-sm text-xs lg:rounded-full rounded-md flex gap-1.5 items-center w-full lg:w-auto justify-center lg:justify-normal"
         >
             <LogOut size={12} className="block sm:hidden text-white" />
             <LogOut size={16} className="hidden sm:block text-white" />
