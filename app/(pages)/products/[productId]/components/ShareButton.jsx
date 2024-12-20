@@ -23,11 +23,11 @@ export default function ShareButton({ product }) {
     };
 
     const shareOptions = [
-        { name: "WhatsApp", url: `https://wa.me/?text=${encodeURIComponent(productLink)}`, image: "/whatsapp.jpeg" },
+        { name: "WhatsApp", url: `https://wa.me/?text=${encodeURIComponent(productLink)}`, image: "/whatsapp.png" },
         { name: "Facebook", url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productLink)}`, image: "/facebook.png" },
         { name: "X", url: `https://x.com/intent/tweet?url=${encodeURIComponent(productLink)}`, image: "/X.png" },
         { name: "LinkedIn", url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(productLink)}`, image: "/linkedin.png" },
-        { name: "Instagram", url: `https://www.instagram.com/?url=${encodeURIComponent(productLink)}`, image: "/instagram.jpeg" },
+        { name: "Instagram", url: `https://www.instagram.com/?url=${encodeURIComponent(productLink)}`, image: "/instagram.png" },
     ];
 
     return (
