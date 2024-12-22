@@ -2,17 +2,21 @@ import { db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
 
 export const createUser = async ({ uid, email, displayName, phoneNumber, photoURL }) => {
-    await setDoc(
-        doc(db, `users/${uid}`),
-        {
-            displayName: displayName || "",
-            email: email || "",
-            phoneNumber: phoneNumber || "",
-            photoURL: photoURL ?? "",
-            timestampCreate: Timestamp.now(),
-        },
-        { merge: true }
-    );
+    const userRef = doc(db, `users/${uid}`);
+    
+    // Fetch existing user data
+    const userSnap = await getDoc(userRef);
+
+    // Prepare the data to be updated
+    const updatedData = {
+        displayName: displayName || userSnap.data()?.displayName || "",
+        email: email || userSnap.data()?.email || "",
+        phoneNumber: phoneNumber || userSnap.data()?.phoneNumber || "",
+        photoURL: photoURL || userSnap.data()?.photoURL || "",
+        timestampCreate: userSnap.exists() ? userSnap.data()?.timestampCreate : Timestamp.now(), // Retain existing timestampCreate if the document exists
+    };
+
+    await setDoc(userRef, updatedData, { merge: true });
 };
 
 export const updateUser = async ({ uid, email, displayName, phoneNumber, photoURL }) => {
