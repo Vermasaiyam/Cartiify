@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
         <title>{metadata.title}</title>
       </head>
+      
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
