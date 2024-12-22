@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/contexts/AuthContext";
 import { auth } from "@/lib/firebase";
+import { createUser } from "@/lib/firestore/user/write";
 import { Button } from "@nextui-org/react";
 import {
     GoogleAuthProvider,
@@ -131,14 +132,13 @@ function SignInWithGoogleComponent() {
     const handleLogin = async () => {
         setIsLoading(true);
         try {
-            // const credential = await signInWithPopup(auth, new GoogleAuthProvider());
-            // const user = credential.user;
-            // await createUser({
-            //     uid: user?.uid,
-            //     displayName: user?.displayName,
-            //     photoURL: user?.photoURL,
-            // });
-            const user = await signInWithPopup(auth, new GoogleAuthProvider());
+            const credential = await signInWithPopup(auth, new GoogleAuthProvider());
+            const user = credential.user;
+            await createUser({
+                uid: user?.uid,
+                displayName: user?.displayName,
+                photoURL: user?.photoURL,
+            });
         } catch (error) {
             toast.error(error?.message);
         }
