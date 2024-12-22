@@ -86,7 +86,7 @@ export default async function Page({ searchParams }) {
                     <span className="font-bold text-green-600">Successfully</span> Placed
                 </h1>
                 <div className="flex items-center gap-4 text-sm">
-                    <Link href={"/account"}>
+                    <Link href={"/my-orders"}>
                         <button className="text-red-600 border border-red-600 px-5 py-2 rounded-lg bg-white">
                             Go To Orders Page
                         </button>
