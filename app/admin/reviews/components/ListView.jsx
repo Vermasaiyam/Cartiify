@@ -10,11 +10,11 @@ import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-export default function Listview() {
+export default function ListView() {
     const { data: reviews } = useAllReview();
 
     return (
-        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl overflow-x-auto">
+        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl overflow-x-hidden">
             <div className="flex flex-col gap-4">
                 {reviews?.map((item) => {
                     return <ReviewCard item={item} key={item?.id} />;
