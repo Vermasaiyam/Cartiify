@@ -136,6 +136,7 @@ function SignInWithGoogleComponent() {
             const user = credential.user;
             await createUser({
                 uid: user?.uid,
+                email: user?.email,
                 displayName: user?.displayName,
                 photoURL: user?.photoURL,
             });

@@ -9,12 +9,28 @@ import {
     where,
 } from "firebase/firestore";
 
+const transformProductData = (product) => {
+    return {
+        ...product,
+        timestampCreate: product.timestampCreate
+            ? new Date(product.timestampCreate.seconds * 1000).toISOString()
+            : null,
+    };
+};
+
 export const getProduct = async ({ id }) => {
-    const data = await getDoc(doc(db, `products/${id}`));
-    if (data.exists()) {
-        return data.data();
+    const docRef = doc(db, "products", id);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        const data = docSnap.data();
+
+        return {
+            ...transformProductData(data),
+            id: docSnap.id,
+        };
     } else {
-        return null;
+        throw new Error("No such document!");
     }
 };
 
