@@ -43,24 +43,23 @@ export default function ShareButton({ product }) {
             </div>
 
             <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <Dialog.Panel className="bg-white p-6 rounded-lg max-w-xl w-full">
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-[90]">
+                    <Dialog.Panel className="bg-white p-6 rounded-lg max-w-xl w-full mx-1">
                         <Dialog.Title className="text-xl font-semibold mb-4">Share Product</Dialog.Title>
                         <div className="flex flex-col gap-2">
-                            <div className="flex items-center gap-2 bg-gray-100 p-2 rounded-md w-full overflow-x-auto">
-                                <div className="flex-1 break-words text-gray-700">
+                            <div className="flex items-center gap-2 bg-gray-100 p-2 rounded-md w-full ">
+                                <div className="flex-1 break-words line-clamp-1 text-gray-700 text-xs md:text-sm lg:text-base" title={productLink}>
                                     {productLink}
                                 </div>
                                 <button
                                     onClick={handleCopy}
-                                    className="flex items-center bg-red-500 text-white px-3 py-1.5 rounded-lg hover:bg-red-700"
+                                    className="flex items-center bg-red-500 text-white text-sm md:text-base px-3 py-1.5 rounded-lg hover:bg-red-700"
                                 >
                                     <MdContentCopy className="mr-1" />
                                     {copied ? "Copied!" : "Copy"}
                                 </button>
                             </div>
                         </div>
-
                         <div className="flex gap-3 my-2">
                             {shareOptions.map((option) => (
                                 <a
@@ -79,7 +78,6 @@ export default function ShareButton({ product }) {
                                 </a>
                             ))}
                         </div>
-
                         <div className="mt-4 flex justify-end">
                             <button
                                 onClick={() => setIsOpen(false)}
