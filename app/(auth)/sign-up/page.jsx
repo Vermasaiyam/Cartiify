@@ -64,9 +64,9 @@ export default function Page() {
         <main className="w-full flex justify-center items-center bg-gray-300 md:p-24 p-10 min-h-screen">
             <section className="flex flex-col gap-3">
                 <Link href="/" className="flex flex-row items-center justify-center gap-2 lg:gap-4 text-red-600 font-bold">
-                    <img className="md:h-12 h-8" src="/logo.png" alt="Cartify" />
+                    <img className="md:h-12 h-8" src="/logo.png" alt="Cartiify" />
                     <div className="md:text-2xl text-xl">
-                        Cartify
+                        Cartiify
                     </div>
                 </Link>
                 <div className="flex flex-col gap-3 bg-white md:p-10 p-5 rounded-xl md:min-w-[440px] w-full">
@@ -86,7 +86,7 @@ export default function Page() {
                             }
                         </div>
                         <CldUploadWidget
-                            uploadPreset="cartify"
+                            uploadPreset="Cartiify"
                             onSuccess={({ event, info }) => {
                                 if (event === "success") {
                                     setPublicId(info?.public_id);

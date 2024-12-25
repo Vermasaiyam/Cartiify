@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: "Cartify",
+  title: "Cartiify",
   description: "Developed by Saiyam Verma",
 };
 

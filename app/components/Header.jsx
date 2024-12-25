@@ -108,8 +108,8 @@ export default function Header() {
                     href={"/"}
                     className="flex flex-row items-center justify-center gap-2 lg:gap-4 text-red-600 font-bold"
                 >
-                    <img className="h-6 md:h-8" src="/logo.png" alt="Cartify" />
-                    <div className="block sm:text-lg md:text-xl lg:text-2xl">Cartify</div>
+                    <img className="h-6 md:h-8" src="/logo.png" alt="Cartiify" />
+                    <div className="block sm:text-lg md:text-xl lg:text-2xl">Cartiify</div>
                 </Link>
             </div>
 
@@ -230,8 +230,8 @@ function Sidebar({ menuList, toggleSidebar, isOpen }) {
                         href={"/"}
                         className="flex flex-row items-center justify-center gap-4 text-red-600 font-bold"
                     >
-                        <img className="h-10" src="/logo.png" alt="Cartify" />
-                        <div className="text-2xl">Cartify</div>
+                        <img className="h-10" src="/logo.png" alt="Cartiify" />
+                        <div className="text-2xl">Cartiify</div>
                     </Link>
                 </div>
                 <div className="flex flex-col gap-4 font-semibold mt-4 px-2 flex-grow">
