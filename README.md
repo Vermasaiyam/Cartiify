@@ -70,4 +70,3 @@ bun dev
 A modern homepage showcasing featured products, trending categories, brands, and new arrivals.
 
 ![Cartiify](./public/Readme/homepage.png)
-
