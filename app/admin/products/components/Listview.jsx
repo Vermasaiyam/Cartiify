@@ -52,48 +52,50 @@ export default function Listview() {
         return <div>{error}</div>;
     }
     return (
-        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl w-full overflow-x-auto">
-            <table className="border-separate border-spacing-y-3">
-                <thead>
-                    <tr>
-                        <th className="font-semibold border-y bg-white px-3 py-2 border-l rounded-l-lg">
-                            S.No.
-                        </th>
-                        <th className="font-semibold border-y bg-white px-3 py-2">Image</th>
-                        <th className="font-semibold border-y bg-white px-3 py-2 text-left">
-                            Title
-                        </th>
-                        <th className="font-semibold border-y bg-white px-3 py-2 text-left">
-                            Price
-                        </th>
-                        <th className="font-semibold border-y bg-white px-3 py-2 text-left">
-                            Stock
-                        </th>
-                        <th className="font-semibold border-y bg-white px-3 py-2 text-left">
-                            Orders
-                        </th>
-                        <th className="font-semibold border-y bg-white px-3 py-2 text-left">
-                            Status
-                        </th>
-                        <th className="font-semibold border-y bg-white px-3 py-2 border-r rounded-r-lg text-center">
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        products?.map((item, index) => {
-                            return (
-                                <Row
-                                    index={index + lastSnapDocList?.length * pageLimit}
-                                    item={item}
-                                    key={item?.id}
-                                />
-                            );
-                        })
-                    }
-                </tbody>
-            </table>
+        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl w-full">
+            <div className="overflow-x-auto">
+                <table className="border-separate border-spacing-y-3">
+                    <thead>
+                        <tr>
+                            <th className="font-semibold border-y bg-white px-3 py-2 border-l rounded-l-lg">
+                                S.No.
+                            </th>
+                            <th className="font-semibold border-y bg-white px-3 py-2">Image</th>
+                            <th className="font-semibold border-y bg-white px-3 py-2 text-left">
+                                Title
+                            </th>
+                            <th className="font-semibold border-y bg-white px-3 py-2 text-left">
+                                Price
+                            </th>
+                            <th className="font-semibold border-y bg-white px-3 py-2 text-left">
+                                Stock
+                            </th>
+                            <th className="font-semibold border-y bg-white px-3 py-2 text-left">
+                                Orders
+                            </th>
+                            <th className="font-semibold border-y bg-white px-3 py-2 text-left">
+                                Status
+                            </th>
+                            <th className="font-semibold border-y bg-white px-3 py-2 border-r rounded-r-lg text-center">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            products?.map((item, index) => {
+                                return (
+                                    <Row
+                                        index={index + lastSnapDocList?.length * pageLimit}
+                                        item={item}
+                                        key={item?.id}
+                                    />
+                                );
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
             <div className="flex justify-between text-sm py-3">
                 <Button
                     isDisabled={isLoading || lastSnapDocList?.length === 0}
