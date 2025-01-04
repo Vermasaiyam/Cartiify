@@ -22,37 +22,39 @@ export default function Listview() {
         return <div>{error}</div>;
     }
     return (
-        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl overflow-x-auto">
+        <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl">
             <h1 className="text-xl">Admins</h1>
-            <table className="border-separate border-spacing-y-3">
-                <thead>
-                    <tr>
-                        <th className="font-semibold border-y bg-white px-3 py-2 border-l rounded-l-lg">
-                            S.No.
-                        </th>
-                        <th className="font-semibold border-y bg-white px-3 py-2">Image</th>
-                        <th className="font-semibold border-y bg-white px-3 py-2 text-left">
-                            Name
-                        </th>
-                        <th className="font-semibold border-y bg-white px-3 py-2 border-r rounded-r-lg text-center">
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {Array.isArray(admins) && admins.length > 0 ? (
-                        admins.map((item, index) => (
-                            <Row index={index} item={item} key={item?.id} />
-                        ))
-                    ) : (
+            <div className="overflow-x-auto">
+                <table className="border-separate border-spacing-y-3">
+                    <thead>
                         <tr>
-                            <td colSpan="4" className="text-center py-4 text-gray-500">
-                                No Admins Available.
-                            </td>
+                            <th className="font-semibold border-y bg-white px-3 py-2 border-l rounded-l-lg">
+                                S.No.
+                            </th>
+                            <th className="font-semibold border-y bg-white px-3 py-2">Image</th>
+                            <th className="font-semibold border-y bg-white px-3 py-2 text-left">
+                                Name
+                            </th>
+                            <th className="font-semibold border-y bg-white px-3 py-2 border-r rounded-r-lg text-center">
+                                Actions
+                            </th>
                         </tr>
-                    )}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {Array.isArray(admins) && admins.length > 0 ? (
+                            admins.map((item, index) => (
+                                <Row index={index} item={item} key={item?.id} />
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="4" className="text-center py-4 text-gray-500">
+                                    No Admins Available.
+                                </td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }
