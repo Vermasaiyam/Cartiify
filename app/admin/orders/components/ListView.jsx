@@ -51,7 +51,7 @@ export default function Listview() {
     }
     return (
         <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl w-full">
-            <div className="w-full overflow-x-auto">
+            <div className="flex-1 flex flex-col w-full overflow-x-auto">
                 <table className="border-separate border-spacing-y-3">
                     <thead>
                         <tr>
