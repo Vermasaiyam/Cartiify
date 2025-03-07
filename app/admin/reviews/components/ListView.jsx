@@ -11,12 +11,38 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 export default function ListView() {
-    const { data: reviews } = useAllReview();
+    const { data: reviews, isLoading, error } = useAllReview();
+
+    // console.log("Reviews state:", { reviews, isLoading, error, reviewsLength: reviews?.length });
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center p-8 bg-white border rounded-xl">
+                <div className="text-gray-600">Loading reviews...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex items-center justify-center p-8 bg-white border rounded-xl">
+                <div className="text-red-500">Error loading reviews: {error}</div>
+            </div>
+        );
+    }
+
+    if (!reviews || reviews.length === 0) {
+        return (
+            <div className="flex items-center justify-center p-8 bg-white border rounded-xl">
+                <div className="text-gray-600">No reviews found. Please check your database.</div>
+            </div>
+        );
+    }
 
     return (
         <div className="flex-1 flex flex-col gap-3 md:pr-5 md:px-0 px-5 rounded-xl overflow-x-hidden">
             <div className="flex flex-col gap-4">
-                {reviews?.map((item) => {
+                {reviews.map((item) => {
+                    console.log("Rendering review:", item);
                     return <ReviewCard item={item} key={item?.id} />;
                 })}
             </div>
